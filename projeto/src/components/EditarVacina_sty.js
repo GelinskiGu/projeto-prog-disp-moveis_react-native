@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const NovaVacina_sty = StyleSheet.create({
+const EditarVacina_sty = StyleSheet.create({
     container: {
 
         containerView: {
@@ -99,8 +99,8 @@ const NovaVacina_sty = StyleSheet.create({
         },
 
         button2: {
-            marginTop: 180,
-            width: '35%',
+            marginTop: 45,
+            width: '40%',
             height: 10,
             backgroundColor: '#37BD6D',
             height: 38,
@@ -109,11 +109,29 @@ const NovaVacina_sty = StyleSheet.create({
             borderWidth: 1,
             borderColor: '#37BD6D',
             borderStyle: 'solid',
-            borderRadius: 10,
+        },
+
+        button3: {
+            marginTop: 150,
+            width: '25%',
+            height: 10,
+            backgroundColor: '#FD7979',
+            height: 38,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderWidth: 1,
+            borderColor: '#FD7979',
+            borderStyle: 'solid',
         }
 
     },
 
+    trashIcon: {
+        width: '25%',
+        marginLeft: 0,
+        marginRight: 0,
+    }
+
 })
 
-export { NovaVacina_sty } 
+export { EditarVacina_sty } 
