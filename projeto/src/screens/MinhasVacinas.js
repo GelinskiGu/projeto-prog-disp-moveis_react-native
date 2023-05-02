@@ -6,6 +6,7 @@ import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MinhasVacinas_sty";
 
 // TODO: Arrumar botão de Nova Vacina quando adicionado novos cards.
+// TODO: Input de search está bugado.
 
 const MinhasVacinas = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState('');
