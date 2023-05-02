@@ -28,7 +28,13 @@ const EditarVacina = () => {
                     </View>
                     <View style={EditarVacina_sty.containerRadioButton}>
                         <View style={{}}>
-                            <Text style={EditarVacina_sty.text.labelRadioButtonText}>Dose</Text>
+                            <Text style={{
+                                color: '#FFFFFF',
+                                fontSize: 16,
+                                fontFamily: 'AveriaLibre-Regular',
+                                marginLeft: 68,
+                                paddingRight: 5,
+                            }}>Dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -37,7 +43,7 @@ const EditarVacina = () => {
                                 onPress={() => setDose('dose1')}
                                 color="#419ED7"
                             />
-                            <Text style={EditarVacina_sty.text.textRadioButton}>1a. dose</Text>
+                            <Text style={EditarVacina_sty.textRadioButton}>1a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 0 }}>
                             <RadioButton
@@ -46,7 +52,7 @@ const EditarVacina = () => {
                                 onPress={() => setDose('dose2')}
                                 color="#419ED7"
                             />
-                            <Text style={EditarVacina_sty.text.textRadioButton}>2a. dose</Text>
+                            <Text style={EditarVacina_sty.textRadioButton}>2a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 127 }}>
                             <RadioButton
@@ -55,7 +61,7 @@ const EditarVacina = () => {
                                 onPress={() => setDose('dose3')}
                                 color="#419ED7"
                             />
-                            <Text style={EditarVacina_sty.text.textRadioButton}>3a. dose</Text>
+                            <Text style={EditarVacina_sty.textRadioButton}>3a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -64,7 +70,7 @@ const EditarVacina = () => {
                                 onPress={() => setDose('doseUnica')}
                                 color="#419ED7"
                             />
-                            <Text style={EditarVacina_sty.text.textRadioButton}>Dose única</Text>
+                            <Text style={EditarVacina_sty.textRadioButton}>Dose única</Text>
                         </View>
                     </View>
                     <View style={EditarVacina_sty.containerInputs}>

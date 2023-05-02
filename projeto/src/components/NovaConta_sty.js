@@ -31,19 +31,13 @@ const NovaConta_sty = StyleSheet.create({
         fontSize: 17,
         fontFamily: 'AveriaLibre-Regular',
         textAlign: 'right',
-        labelRadioButton: {
-            color: '#FFFFFF',
-            marginRight: -22,
-            fontSize: 16,
-            fontFamily: 'AveriaLibre-Regular',
-            textAlign: 'right',
-            marginLeft: 60,
-        },
-        textRadioButton: {
-            color: '#FFFFFF',
-            fontSize: 16,
-            fontFamily: 'AveriaLibre-Regular',
-        }
+
+    },
+
+    textRadioButton: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Regular',
     },
 
     inputs: {

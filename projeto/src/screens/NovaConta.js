@@ -28,7 +28,14 @@ const NovaConta = () => {
                     </View>
                     <View style={NovaConta_sty.radioButtonGroup} behavior="height">
                         <View style={{ marginRight: 20, marginLeft: 50 }}>
-                            <Text style={NovaConta_sty.text.labelRadioButton}>Sexo</Text>
+                            <Text style={{
+                                color: '#FFFFFF',
+                                marginRight: -22,
+                                fontSize: 16,
+                                fontFamily: 'AveriaLibre-Regular',
+                                textAlign: 'right',
+                                marginLeft: 60,
+                            }}>Sexo</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -37,7 +44,7 @@ const NovaConta = () => {
                                 onPress={() => setSexo('masculino')}
                                 color="#419ED7"
                             />
-                            <Text style={NovaConta_sty.text.textRadioButton}>Masculino</Text>
+                            <Text style={NovaConta_sty.textRadioButton}>Masculino</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -50,7 +57,7 @@ const NovaConta = () => {
                                 }}
                                 color="#419ED7"
                             />
-                            <Text style={NovaConta_sty.text.textRadioButton}>Feminino</Text>
+                            <Text style={NovaConta_sty.textRadioButton}>Feminino</Text>
                         </View>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>

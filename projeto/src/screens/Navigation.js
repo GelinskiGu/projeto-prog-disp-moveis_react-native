@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="MinhasVacinas">
+            <Stack.Navigator initialRouteName="Inicial">
                 <Stack.Screen name="Inicial" component={Inicial} options={{ headerShown: false }} />
                 <Stack.Screen name="NovaConta" component={NovaConta} options={{
                     headerTitleStyle: {

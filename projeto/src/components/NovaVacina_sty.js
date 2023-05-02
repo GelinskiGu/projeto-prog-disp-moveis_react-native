@@ -43,18 +43,13 @@ const NovaVacina_sty = StyleSheet.create({
         fontFamily: 'AveriaLibre-Regular',
         textAlign: 'right',
         alignSelf: 'center',
-        labelRadioButtonText: {
-            color: '#FFFFFF',
-            fontSize: 16,
-            fontFamily: 'AveriaLibre-Regular',
-            marginLeft: 68,
-            paddingRight: 5,
-        },
-        textRadioButton: {
-            color: '#FFFFFF',
-            fontSize: 14,
-            fontFamily: 'AveriaLibre-Regular',
-        }
+
+    },
+
+    textRadioButton: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontFamily: 'AveriaLibre-Regular',
     },
 
     inputs: {

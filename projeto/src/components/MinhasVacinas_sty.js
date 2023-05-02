@@ -34,19 +34,16 @@ const MinhasVacinas_sty = StyleSheet.create({
             alignItems: 'center',
             justifyContent: 'center',
             width: '35%',
+            backgroundColor: "#49B976",
+            marginTop: 200,
+            marginBottom: 50,
             height: 30,
-            marginTop: 400,
-            backgroundColor: "#37BD6D",
         },
 
         text: {
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 17,
             color: '#FFFFFF',
-
-            textPlaceholder: {
-                fontFamily: 'AveriaLibre-Regular',
-            },
         },
 
 

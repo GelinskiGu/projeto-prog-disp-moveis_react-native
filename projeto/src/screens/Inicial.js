@@ -5,7 +5,7 @@ import { KeyboardAvoidingView } from 'react-native';
 
 // TODO: Arrumar imagem de fundo.
 
-const Inicial = () => {
+const Inicial = (props) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
@@ -37,10 +37,10 @@ const Inicial = () => {
                         </View>
 
                         <View style={Font_sty.buttons_container}>
-                            <TouchableOpacity style={Font_sty.buttons_container.buttons1}>
+                            <TouchableOpacity style={Font_sty.buttons_container.buttons1} onPress={() => { props.navigation.navigate("MinhasVacinas") }}>
                                 <Text style={Font_sty.buttons_container.textButton1}>Entrar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={Font_sty.buttons_container.buttons2}>
+                            <TouchableOpacity style={Font_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
                                 <Text style={Font_sty.buttons_container.textButton1}>Criar minha conta</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={Font_sty.buttons_container.buttons3}>

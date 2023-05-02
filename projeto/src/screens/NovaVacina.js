@@ -7,20 +7,24 @@ import { NovaVacina_sty } from "../components/NovaVacina_sty";
 
 // TODO: Colocar icone de data
 
-const NovaVacina = () => {
+const NovaVacina = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState('');
     const [vacina, setVacina] = useState('');
     const [dose, setDose] = useState('');
     const [proxVacinacao, setProxVacinacao] = useState('');
 
+    const cadastrar = () => {
+        props.navigation.navigate("MinhasVacinas")
+    }
 
     return (
         <KeyboardAvoidingView style={NovaVacina_sty.container.containerKeyboard}>
             <ScrollView>
                 <View style={NovaVacina_sty.container.containerView}>
                     <View style={NovaVacina_sty.containerInputs}>
-                        <Text style={NovaVacina_sty.text}>Data de Vacinação</Text>
-                        <TextInput label={'DataVacinacao'} style={NovaVacina_sty.inputs} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInput>
+                        <Text style={NovaVacina_sty.text}>Data de vacinação</Text>
+                        <TextInput label={'DataVacinacao'} style={[NovaVacina_sty.inputs, { flex: 40, marginRight: 107 }]} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInput>
+                        <Image source={require('../../assets/images/icon.png')} style={{ marginRight: 113, marginLeft: -132, width: 20, height: 20 }} />
                     </View>
                     <View style={NovaVacina_sty.containerInputs}>
                         <Text style={NovaVacina_sty.text}>Vacina</Text>
@@ -28,7 +32,13 @@ const NovaVacina = () => {
                     </View>
                     <View style={NovaVacina_sty.containerRadioButton}>
                         <View style={{}}>
-                            <Text style={NovaVacina_sty.text.labelRadioButtonText}>Dose</Text>
+                            <Text style={{
+                                color: '#FFFFFF',
+                                fontSize: 16,
+                                fontFamily: 'AveriaLibre-Regular',
+                                marginLeft: 68,
+                                paddingRight: 5,
+                            }}>Dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -37,7 +47,7 @@ const NovaVacina = () => {
                                 onPress={() => setDose('dose1')}
                                 color="#419ED7"
                             />
-                            <Text style={NovaVacina_sty.text.textRadioButton}>1a. dose</Text>
+                            <Text style={NovaVacina_sty.textRadioButton}>1a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 0 }}>
                             <RadioButton
@@ -46,7 +56,7 @@ const NovaVacina = () => {
                                 onPress={() => setDose('dose2')}
                                 color="#419ED7"
                             />
-                            <Text style={NovaVacina_sty.text.textRadioButton}>2a. dose</Text>
+                            <Text style={NovaVacina_sty.textRadioButton}>2a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 127 }}>
                             <RadioButton
@@ -55,7 +65,7 @@ const NovaVacina = () => {
                                 onPress={() => setDose('dose3')}
                                 color="#419ED7"
                             />
-                            <Text style={NovaVacina_sty.text.textRadioButton}>3a. dose</Text>
+                            <Text style={NovaVacina_sty.textRadioButton}>3a. dose</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
@@ -64,7 +74,7 @@ const NovaVacina = () => {
                                 onPress={() => setDose('doseUnica')}
                                 color="#419ED7"
                             />
-                            <Text style={NovaVacina_sty.text.textRadioButton}>Dose única</Text>
+                            <Text style={NovaVacina_sty.textRadioButton}>Dose única</Text>
                         </View>
                     </View>
                     <View style={NovaVacina_sty.containerInputs}>
@@ -76,10 +86,18 @@ const NovaVacina = () => {
                     </View>
                     <View style={NovaVacina_sty.containerInputs}>
                         <Text style={NovaVacina_sty.text}>Próxima vacinação</Text>
-                        <TextInput label={'ProximaVacina'} style={NovaVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInput>
+                        <TextInput
+                            label={'ProximaVacinacao'}
+                            style={[NovaVacina_sty.inputs, { flex: 40, marginRight: 107 }]}
+                            value={proxVacinacao}
+                            onChangeText={setProxVacinacao}>
+                        </TextInput>
+                        <Image source={require('../../assets/images/icon.png')} style={{ marginRight: 113, marginLeft: -132, width: 20, height: 20 }} />
                     </View>
                     <View style={NovaVacina_sty.buttons.button2}>
-                        <TouchableOpacity><Text style={NovaVacina_sty.buttons.textButton}>Cadastrar</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={cadastrar}>
+                            <Text style={NovaVacina_sty.buttons.textButton}>Cadastrar</Text>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
