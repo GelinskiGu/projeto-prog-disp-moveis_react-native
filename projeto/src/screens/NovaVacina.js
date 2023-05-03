@@ -4,6 +4,8 @@ import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 import { NovaVacina_sty } from "../components/NovaVacina_sty";
+import contas from "../data/Contas";
+
 
 // TODO: Colocar icone de data
 
@@ -14,7 +16,11 @@ const NovaVacina = (props) => {
     const [proxVacinacao, setProxVacinacao] = useState('');
 
     const cadastrar = () => {
-        props.navigation.navigate("MinhasVacinas")
+        props.navigation.navigate("MinhasVacinas");
+        contas["Gelinski"] = {
+            nome: "teste",
+        }
+        console.log(contas);
     }
 
     return (

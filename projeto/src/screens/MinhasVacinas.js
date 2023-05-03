@@ -4,6 +4,7 @@ import { KeyboardAvoidingView } from 'react-native';
 
 import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MinhasVacinas_sty";
+import contas from "../data/Contas";
 
 // TODO: Arrumar botão de Nova Vacina quando adicionado novos cards.
 // TODO: Input de search está bugado.
@@ -36,7 +37,10 @@ const MinhasVacinas = (props) => {
 
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
                     <View style={MinhasVacinas_sty.button.container}>
-                        <TouchableOpacity onPress={() => { props.navigation.navigate("NovaVacina") }}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            props.navigation.navigate("NovaVacina");
+                            console.log(contas)
+                        }}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
