@@ -37,7 +37,7 @@ const Inicial = (props) => {
                         </View>
 
                         <View style={Font_sty.buttons_container}>
-                            <TouchableOpacity style={Font_sty.buttons_container.buttons1} onPress={() => { props.navigation.navigate("MinhasVacinas") }}>
+                            <TouchableOpacity style={Font_sty.buttons_container.buttons1} onPress={() => { props.navigation.navigate("MyDrawer") }}>
                                 <Text style={Font_sty.buttons_container.textButton1}>Entrar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={Font_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>

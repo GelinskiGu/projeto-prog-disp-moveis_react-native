@@ -91,6 +91,14 @@ const NovaVacina_sty = StyleSheet.create({
             borderWidth: 1,
             borderColor: '#419ED7',
             borderStyle: 'solid',
+            shadowColor: '#000',
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
         },
 
         button2: {
@@ -105,6 +113,14 @@ const NovaVacina_sty = StyleSheet.create({
             borderColor: '#37BD6D',
             borderStyle: 'solid',
             borderRadius: 10,
+            shadowColor: '#000',
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 5,
+            elevation: 5,
         }
 
     },

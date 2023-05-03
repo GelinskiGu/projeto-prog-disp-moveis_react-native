@@ -7,6 +7,7 @@ import NovaVacina from "./NovaVacina";
 import EditarVacina from "./EditarVacina";
 import ProximasVacinas from "./ProximasVacinas";
 import MinhasVacinas from "./MinhasVacinas";
+import MyDrawer from "../components/MyDrawer";
 
 // TODO: Implementar navegação entre telas.
 
@@ -17,6 +18,7 @@ const Navigation = () => {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Inicial">
                 <Stack.Screen name="Inicial" component={Inicial} options={{ headerShown: false }} />
+                <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false }} />
                 <Stack.Screen name="NovaConta" component={NovaConta} options={{
                     headerTitleStyle: {
                         color: '#419ED7',
