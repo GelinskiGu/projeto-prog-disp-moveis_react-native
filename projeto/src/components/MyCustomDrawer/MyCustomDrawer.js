@@ -4,13 +4,12 @@ import { View, Image, Text, TouchableOpacity } from 'react-native'
 import { MyCustomDrawer_sty } from './MyCustomDrawer_sty';
 
 
-
 const MyCustomDrawer = (props) => {
     return (
         <DrawerContentScrollView style={MyCustomDrawer_sty.container}>
             <View style={MyCustomDrawer_sty.container.containerFlex}>
                 <View style={MyCustomDrawer_sty.container.container1}>
-                    <Text style={MyCustomDrawer_sty.text}>Olá Jurandir</Text>
+                    <Text style={MyCustomDrawer_sty.text}>Olá {props.nome}</Text>
                     <View style={MyCustomDrawer_sty.line} />
                 </View>
 

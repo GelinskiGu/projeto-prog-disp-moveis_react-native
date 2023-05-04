@@ -16,7 +16,6 @@ const NovaVacina = (props) => {
     const [proxVacinacao, setProxVacinacao] = useState('');
 
     const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
-    let contador = props.route.params?.contador;
 
     const cadastrar = () => {
         console.log("Email na novaVacina: " + emailUsuarioLogado);
@@ -30,8 +29,9 @@ const NovaVacina = (props) => {
             if (contas[emailUsuarioLogado])
                 contas[emailUsuarioLogado].vacinas[vacina] = vacinaCriada;
         }
-        contador++;
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado, contador: contador });
+        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
+        props.navigation.pop();
+        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
     }
 
     return (
@@ -60,8 +60,8 @@ const NovaVacina = (props) => {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
                                 value="dose1"
-                                status={dose == 'dose1' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose1')}
+                                status={dose == '1a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('1a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={NovaVacina_sty.textRadioButton}>1a. dose</Text>
@@ -69,8 +69,8 @@ const NovaVacina = (props) => {
                         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 0 }}>
                             <RadioButton
                                 value="dose2"
-                                status={dose == 'dose2' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose2')}
+                                status={dose == '2a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('2a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={NovaVacina_sty.textRadioButton}>2a. dose</Text>
@@ -78,8 +78,8 @@ const NovaVacina = (props) => {
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 127 }}>
                             <RadioButton
                                 value="dose3"
-                                status={dose == 'dose3' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose3')}
+                                status={dose == '3a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('3a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={NovaVacina_sty.textRadioButton}>3a. dose</Text>
@@ -87,8 +87,8 @@ const NovaVacina = (props) => {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
                                 value="doseUnica"
-                                status={dose == 'doseUnica' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('doseUnica')}
+                                status={dose == 'Dose única' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('Dose única')}
                                 color="#419ED7"
                             />
                             <Text style={NovaVacina_sty.textRadioButton}>Dose única</Text>

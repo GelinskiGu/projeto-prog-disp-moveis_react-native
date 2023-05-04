@@ -17,14 +17,14 @@ const MinhasVacinas = (props) => {
     const [myComponents, setMyComponents] = useState([]);
 
     const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
-    const contador = props.route.params?.contador;
 
     const novaVacina = () => {
-        props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado, contador: contador });
+        props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });
     }
 
     useEffect(() => {
         console.log("Usuario logado: " + emailUsuarioLogado);
+
         const components = [];
         if (contas[emailUsuarioLogado]) {
             for (const vacina in contas[emailUsuarioLogado].vacinas) {
@@ -35,6 +35,7 @@ const MinhasVacinas = (props) => {
                 const doseObj = objVacina.dose;
                 const dataDoseObj = objVacina.proxVacinacao;
                 const component = <MyVaccines
+                    key={vacina}
                     nomeVacina={nomeVacinaObj}
                     dose={doseObj}
                     data={dataObj}
@@ -46,7 +47,7 @@ const MinhasVacinas = (props) => {
 
             setMyComponents(components);
         }
-    }, [contador]);
+    }, []);
 
     return (
         <KeyboardAvoidingView style={MinhasVacinas_sty.container.containerKeyboard}>
