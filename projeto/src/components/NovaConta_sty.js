@@ -2,12 +2,13 @@ import { StyleSheet } from "react-native"
 
 const NovaConta_sty = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: '#ADD4D0',
         width: '100%',
         height: '100%',
-        paddingVertical: 250,
+        paddingVertical: 100,
         gap: 15,
         keyboard: {
             width: '100%',
@@ -21,8 +22,8 @@ const NovaConta_sty = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '100%',
-        marginLeft: 30,
+        marginHorizontal: 20,
+        gap: 8,
     },
 
     text: {
@@ -47,9 +48,9 @@ const NovaConta_sty = StyleSheet.create({
         height: 30,
         backgroundColor: '#FFFFFF',
         fontFamily: 'AveriaLibre-Regular',
-        paddingRight: 10,
-        marginRight: 50,
-        marginLeft: 10,
+        paddingRight: 0,
+        marginRight: 0,
+        marginLeft: 0,
         color: '#419ED7',
         alignSelf: 'center',
         paddingVertical: 5,
@@ -59,7 +60,7 @@ const NovaConta_sty = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         width: '100%',
     },
 
@@ -67,8 +68,9 @@ const NovaConta_sty = StyleSheet.create({
         flex: 1,
         width: '50%',
         paddingVertical: 9,
-        marginBottom: -150,
+        marginBottom: 0,
         marginTop: 200,
+        elevation: 5,
         backgroundColor: '#37BD6D',
         alignSelf: 'center',
         alignItems: 'center',
@@ -82,6 +84,23 @@ const NovaConta_sty = StyleSheet.create({
             fontSize: 18,
             fontFamily: 'AveriaLibre-Regular',
         },
+    },
+
+    containerInputWrongField: {
+        flex: 60,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingRight: 0,
+        marginLeft: 0,
+    },
+
+    textWrongFields: {
+        flex: 40,
+        fontFamily: 'AveriaLibre-Regular',
+        color: '#FD7979',
+        alignSelf: 'flex-start',
+        textAlign: 'left',
     }
 })
 
