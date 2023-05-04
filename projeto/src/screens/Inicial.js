@@ -3,12 +3,36 @@ import { useState, useEffect } from 'react';
 import { Font_sty } from "../components/Font_sty";
 import { KeyboardAvoidingView } from 'react-native';
 
+import contas from "../data/Contas";
+
 // TODO: Arrumar imagem de fundo.
+// TODO: Colocar mensagem de erro quando dados estão incorretos.
 
 const Inicial = (props) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+    const contador = 1;
+
+    const entrar = () => {
+        console.log(contas);
+        for (const key in contas) {
+            if (key === email) {
+                console.log("Chegou aki" + key);
+                const emailUsuario = contas[key].email;
+                const senhaUsuario = contas[key].senha;
+                console.log(emailUsuario, senhaUsuario);
+                if (emailUsuario === email && senhaUsuario === senha) {
+                    props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuario, contador: contador });
+                    return;
+                }
+                else {
+                    return (<Text>E-mail e/ou senha inválidos.</Text>);
+                }
+            }
+        }
+        return (<Text>E-mail não cadastrado.</Text>);
+    }
 
     return (
 
@@ -37,7 +61,7 @@ const Inicial = (props) => {
                         </View>
 
                         <View style={Font_sty.buttons_container}>
-                            <TouchableOpacity style={Font_sty.buttons_container.buttons1} onPress={() => { props.navigation.navigate("MyDrawer") }}>
+                            <TouchableOpacity style={Font_sty.buttons_container.buttons1} onPress={entrar}>
                                 <Text style={Font_sty.buttons_container.textButton1}>Entrar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={Font_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>

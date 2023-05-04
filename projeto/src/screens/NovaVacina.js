@@ -15,12 +15,23 @@ const NovaVacina = (props) => {
     const [dose, setDose] = useState('');
     const [proxVacinacao, setProxVacinacao] = useState('');
 
+    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    let contador = props.route.params?.contador;
+
     const cadastrar = () => {
-        props.navigation.navigate("MinhasVacinas");
-        contas["Gelinski"] = {
-            nome: "teste",
+        console.log("Email na novaVacina: " + emailUsuarioLogado);
+        if (dataVacinacao && vacina && dose && proxVacinacao) {
+            const vacinaCriada = {
+                nome: vacina,
+                dataVacinacao: dataVacinacao,
+                dose: dose,
+                proxVacinacao: proxVacinacao,
+            };
+            if (contas[emailUsuarioLogado])
+                contas[emailUsuarioLogado].vacinas[vacina] = vacinaCriada;
         }
-        console.log(contas);
+        contador++;
+        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado, contador: contador });
     }
 
     return (

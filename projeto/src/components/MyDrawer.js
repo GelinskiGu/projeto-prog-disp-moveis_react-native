@@ -17,7 +17,7 @@ const MyDrawer = (props) => {
                 },
                 headerStyle: { backgroundColor: '#C1E7E3' },
                 headerTitle: 'Minhas Vacinas',
-            }} />
+            }} initialParams={{ emailUsuarioLogado: props.route.params.emailUsuarioLogado, contador: props.route.params.contador }} />
             <Drawer.Screen name="ProximasVacinas" component={ProximasVacinas} />
         </Drawer.Navigator>
     )

@@ -33,8 +33,9 @@ const NovaConta = (props) => {
                 dataNascimento: data,
                 email: email,
                 senha: senha,
+                vacinas: {},
             };
-            contas[nome] = pessoa;
+            contas[email] = pessoa;
             console.log(contas);
             props.navigation.pop();
         }

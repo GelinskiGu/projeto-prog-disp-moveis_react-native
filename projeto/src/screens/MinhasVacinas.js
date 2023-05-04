@@ -14,10 +14,39 @@ const MinhasVacinas = (props) => {
     const [vacina, setVacina] = useState('');
     const [dose, setDose] = useState('');
     const [proxVacinacao, setProxVacinacao] = useState('');
+    const [myComponents, setMyComponents] = useState([]);
 
-    const myVaccines = () => {
-        props.navigation.navigate("EditarVacina")
+    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    const contador = props.route.params?.contador;
+
+    const novaVacina = () => {
+        props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado, contador: contador });
     }
+
+    useEffect(() => {
+        console.log("Usuario logado: " + emailUsuarioLogado);
+        const components = [];
+        if (contas[emailUsuarioLogado]) {
+            for (const vacina in contas[emailUsuarioLogado].vacinas) {
+                console.log(vacina);
+                const objVacina = contas[emailUsuarioLogado].vacinas[vacina];
+                const nomeVacinaObj = objVacina.nome;
+                const dataObj = objVacina.dataVacinacao;
+                const doseObj = objVacina.dose;
+                const dataDoseObj = objVacina.proxVacinacao;
+                const component = <MyVaccines
+                    nomeVacina={nomeVacinaObj}
+                    dose={doseObj}
+                    data={dataObj}
+                    dataDose={dataDoseObj}
+                />;
+                components.push(component);
+                console.log(nomeVacinaObj, doseObj, dataObj, dataDoseObj);
+            }
+
+            setMyComponents(components);
+        }
+    }, [contador]);
 
     return (
         <KeyboardAvoidingView style={MinhasVacinas_sty.container.containerKeyboard}>
@@ -28,19 +57,13 @@ const MinhasVacinas = (props) => {
                         <TextInput placeholder="PESQUISAR VACINA..." style={{ textAlign: "center", paddingVertical: 1, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
-                        <MyVaccines nomeVacina="BCG" dose="Dose única" data="11/06/2022" dataDose="Não há próxima dose" onPress={myVaccines} />
-                        <MyVaccines nomeVacina="Febre Amarela" dose="1a. dose" data="11/06/2022" dataDose="Próxima dose em: 11/10/2023" />
-                        <MyVaccines nomeVacina="Hepatite B" dose="1a. dose" data="11/06/2022" dataDose="Próxima dose em: 11/10/2023" />
-                        <MyVaccines nomeVacina="Poliomelite" dose="1a. dose" data="11/06/2022" dataDose="Próxima dose em: 11/10/2023" />
+                        {myComponents}
                     </View>
                 </View>
 
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
                     <View style={MinhasVacinas_sty.button.container}>
-                        <TouchableOpacity onPress={() => {
-                            props.navigation.navigate("NovaVacina");
-                            console.log(contas)
-                        }}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={novaVacina}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
