@@ -11,7 +11,7 @@ const MyVaccines = (props) => {
             <Text style={MyVaccines_sty.text.textNameVaccine}>{props.nomeVacina}</Text>
             <Text style={MyVaccines_sty.text.textDose}>{props.dose}</Text>
             <Text style={MyVaccines_sty.text.textDate}>{props.data}</Text>
-            <Image source={require('../../../assets/images/image-comprovante.png')} style={{ width: '100%' }} resizeMode="contain" />
+            <Image source={require('../../../assets/images/image-comprovante.png')} style={MyVaccines_sty.image} />
             <Text style={MyVaccines_sty.text.textDoseDate}>{props.dataDose}</Text>
         </TouchableOpacity>
     )

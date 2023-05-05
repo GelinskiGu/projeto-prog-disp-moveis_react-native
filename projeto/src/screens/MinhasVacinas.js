@@ -63,7 +63,7 @@ const MinhasVacinas = (props) => {
                     </View>
                 </View>
 
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
+                <View style={{ flex: 0, alignItems: 'center', justifyContent: 'flex-end' }}>
                     <View style={MinhasVacinas_sty.button.container}>
                         <TouchableOpacity onPress={novaVacina}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
                     </View>

@@ -13,7 +13,7 @@ const MyVaccines_sty = StyleSheet.create({
             paddingHorizontal: 14,
             paddingVertical: 4,
             marginLeft: '2%',
-            gap: -4,
+            gap: 2,
             marginVertical: 5,
             shadowColor: '#000',
             shadowOffset: {
@@ -22,7 +22,7 @@ const MyVaccines_sty = StyleSheet.create({
             },
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
-            elevation: 5,
+            elevation: 10,
         },
 
         containerKeyboard: {
@@ -34,38 +34,43 @@ const MyVaccines_sty = StyleSheet.create({
 
     text: {
         textNameVaccine: {
+            flex: 1,
             fontFamily: 'AveriaLibre-Regular',
             color: '#419ED7',
-            fontSize: 24,
+            fontSize: 22,
             paddingTop: 2,
         },
 
         textDose: {
+            flex: 1,
             fontFamily: 'AveriaLibre-Regular',
-            fontSize: 13,
-            marginBottom: 2,
+            fontSize: 14,
             backgroundColor: '#3F92C5',
             color: '#FFFFFF',
             paddingHorizontal: 10,
-            marginVertical: 5,
-            paddingVertical: 1,
         },
 
         textDate: {
+            flex: 1,
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 13,
-            marginBottom: -28,
-            marginTop: 5,
+            color: '#8B8B8B',
         },
 
         textDoseDate: {
+            flex: 1,
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 11,
             alignSelf: 'flex-end',
-            marginTop: -28,
             color: '#FD7979',
         },
-    }
+    },
+
+    image: {
+        flex: 1,
+        width: 160,
+        height: 70,
+    },
 })
 
 export { MyVaccines_sty } 
