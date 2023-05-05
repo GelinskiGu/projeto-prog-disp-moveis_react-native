@@ -8,6 +8,7 @@ import contas from "../data/Contas";
 
 // TODO: Arrumar botão de Nova Vacina quando adicionado novos cards.
 // TODO: Input de search está bugado.
+// TODO: Tirar os console log.
 
 const MinhasVacinas = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState('');

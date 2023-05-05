@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
@@ -8,7 +8,7 @@ import contas from "../data/Contas";
 import { transformer } from "../../metro.config";
 
 // TODO: Tirar clgs
-// TODO: Colocar imagem de data
+// ** Layout Finalizado **
 
 const NovaConta = (props) => {
     const [nome, setNome] = useState('');
@@ -48,7 +48,7 @@ const NovaConta = (props) => {
                 <View style={NovaConta_sty.container}>
                     <View style={[NovaConta_sty.containerInputs, { marginTop: 0, }]}>
                         <Text style={NovaConta_sty.text}>Nome completo</Text>
-                        <TextInput label={'NomeCompleto'} style={NovaConta_sty.inputs} value={nome} onChangeText={setNome}></TextInput>
+                        <TextInput placeholder="Seu nome..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'NomeCompleto'} style={NovaConta_sty.inputs} value={nome} onChangeText={setNome}></TextInput>
                     </View>
                     <View style={NovaConta_sty.radioButtonGroup}>
                         <View style={{ marginRight: 0, marginLeft: 0, flex: 13 }}>
@@ -86,20 +86,23 @@ const NovaConta = (props) => {
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Data nascimento</Text>
-                        <TextInput label={'DataNascimento'} style={NovaConta_sty.inputs} value={data} onChangeText={setData}></TextInput>
+                        <View style={NovaConta_sty.dataContainer}>
+                            <TextInput placeholder="Data de nascimento..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'DataNascimento'} style={NovaConta_sty.inputs} value={data} onChangeText={setData}></TextInput>
+                            <Image source={require('../../assets/images/icon.png')} style={NovaConta_sty.image} />
+                        </View>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>E-mail</Text>
-                        <TextInput label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
+                        <TextInput placeholder="Seu e-mail..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Senha</Text>
-                        <TextInput secureTextEntry={true} label={'Senha'} style={NovaConta_sty.inputs} value={senha} onChangeText={setSenha}></TextInput>
+                        <TextInput placeholder="Sua senha..." placeholderTextColor='rgba(0, 0, 0, 0.4)' secureTextEntry={true} label={'Senha'} style={NovaConta_sty.inputs} value={senha} onChangeText={setSenha}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={[NovaConta_sty.text, { marginBottom: margem, }]}> Repetir senha</Text>
                         <View style={NovaConta_sty.containerInputWrongField}>
-                            <TextInput secureTextEntry={true} label={'SenhaRep'} style={NovaConta_sty.inputs} value={senhaRep} onChangeText={setSenhaRep}></TextInput>
+                            <TextInput placeholder="Repita sua senha..." placeholderTextColor='rgba(0, 0, 0, 0.4)' secureTextEntry={true} label={'SenhaRep'} style={NovaConta_sty.inputs} value={senhaRep} onChangeText={setSenhaRep}></TextInput>
                             {mensagemSenha}
                         </View>
                     </View>

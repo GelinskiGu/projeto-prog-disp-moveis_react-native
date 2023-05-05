@@ -101,7 +101,21 @@ const NovaConta_sty = StyleSheet.create({
         color: '#FD7979',
         alignSelf: 'flex-start',
         textAlign: 'left',
-    }
+    },
+
+    dataContainer: {
+        flex: 55,
+        flexDirection: 'row',
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        marginRight: 20,
+    },
+
+    image: {
+        width: 20,
+        height: 20,
+        marginRight: 5,
+    },
 })
 
 export { NovaConta_sty } 
