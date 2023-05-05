@@ -49,11 +49,12 @@ const ProximasVacinas = (props) => {
             <ScrollView>
                 <View style={ProximasVacinas_sty.container.containerView}>
                     {myComponents}
-                    <View style={ProximasVacinas_sty.button.container}>
-                        <TouchableOpacity onPress={novaVacina}><Text style={ProximasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
-                    </View>
                 </View>
             </ScrollView>
+
+            <TouchableOpacity style={ProximasVacinas_sty.buttonContainer} onPress={novaVacina}>
+                <Text style={ProximasVacinas_sty.buttonText}>Nova Vacina</Text>
+            </TouchableOpacity>
         </KeyboardAvoidingView >
     )
 }

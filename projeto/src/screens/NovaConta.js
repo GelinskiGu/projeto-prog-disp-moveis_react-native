@@ -48,7 +48,7 @@ const NovaConta = (props) => {
                 <View style={NovaConta_sty.container}>
                     <View style={[NovaConta_sty.containerInputs, { marginTop: 0, }]}>
                         <Text style={NovaConta_sty.text}>Nome completo</Text>
-                        <TextInput placeholder="Seu nome..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'NomeCompleto'} style={NovaConta_sty.inputs} value={nome} onChangeText={setNome}></TextInput>
+                        <TextInput placeholder="Seu nome..." placeholderTextColor={'#8B8B8B'} label={'NomeCompleto'} style={NovaConta_sty.inputs} value={nome} onChangeText={setNome}></TextInput>
                     </View>
                     <View style={NovaConta_sty.radioButtonGroup}>
                         <View style={{ marginRight: 0, marginLeft: 0, flex: 13 }}>
@@ -87,22 +87,22 @@ const NovaConta = (props) => {
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Data nascimento</Text>
                         <View style={NovaConta_sty.dataContainer}>
-                            <TextInput placeholder="Data de nascimento..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'DataNascimento'} style={NovaConta_sty.inputs} value={data} onChangeText={setData}></TextInput>
+                            <TextInput placeholder="Data de nascimento..." placeholderTextColor={'#8B8B8B'} label={'DataNascimento'} style={NovaConta_sty.inputs} value={data} onChangeText={setData}></TextInput>
                             <Image source={require('../../assets/images/icon.png')} style={NovaConta_sty.image} />
                         </View>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>E-mail</Text>
-                        <TextInput placeholder="Seu e-mail..." placeholderTextColor='rgba(0, 0, 0, 0.4)' label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
+                        <TextInput placeholder="Seu e-mail..." placeholderTextColor={'#8B8B8B'} label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Senha</Text>
-                        <TextInput placeholder="Sua senha..." placeholderTextColor='rgba(0, 0, 0, 0.4)' secureTextEntry={true} label={'Senha'} style={NovaConta_sty.inputs} value={senha} onChangeText={setSenha}></TextInput>
+                        <TextInput placeholder="Sua senha..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'Senha'} style={NovaConta_sty.inputs} value={senha} onChangeText={setSenha}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={[NovaConta_sty.text, { marginBottom: margem, }]}> Repetir senha</Text>
                         <View style={NovaConta_sty.containerInputWrongField}>
-                            <TextInput placeholder="Repita sua senha..." placeholderTextColor='rgba(0, 0, 0, 0.4)' secureTextEntry={true} label={'SenhaRep'} style={NovaConta_sty.inputs} value={senhaRep} onChangeText={setSenhaRep}></TextInput>
+                            <TextInput placeholder="Repita sua senha..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'SenhaRep'} style={NovaConta_sty.inputs} value={senhaRep} onChangeText={setSenhaRep}></TextInput>
                             {mensagemSenha}
                         </View>
                     </View>

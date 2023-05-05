@@ -15,8 +15,7 @@ const MyVaccines_sty = StyleSheet.create({
             marginLeft: '2%',
             gap: 2,
             marginVertical: 5,
-            elevation: 10,
-            position: 'relative',
+            elevation: 5,
         },
 
         containerKeyboard: {

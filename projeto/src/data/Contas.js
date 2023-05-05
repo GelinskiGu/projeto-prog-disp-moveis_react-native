@@ -33,6 +33,13 @@ let contas = {
                 dose: '1a. dose',
                 proxVacinacao: '12/10/2023'
             },
+            "Poliomelite": {
+                nome: "Covid",
+                dataVacinacao: '11/10/2022',
+                dose: '1a. dose',
+                proxVacinacao: '12/10/2023'
+            },
+
 
         },
     }

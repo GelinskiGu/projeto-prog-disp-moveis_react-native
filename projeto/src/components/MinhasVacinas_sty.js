@@ -16,6 +16,7 @@ const MinhasVacinas_sty = StyleSheet.create({
         containerKeyboard: {
             flex: 1,
             backgroundColor: '#ADD4D0',
+            flexDirection: 'column',
             width: '100%',
             height: '100%',
         },
@@ -46,7 +47,7 @@ const MinhasVacinas_sty = StyleSheet.create({
 
         text: {
             fontFamily: 'AveriaLibre-Regular',
-            fontSize: 17,
+            fontSize: 18,
             color: '#FFFFFF',
             alignSelf: 'center',
         },
@@ -74,16 +75,15 @@ const MinhasVacinas_sty = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         backgroundColor: '#37BD6D',
-        width: '30%',
-        height: 30,
+        width: '40%',
+        height: 40,
         zIndex: 1,
-        marginTop: 40,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
+        bottom: 50,
         alignSelf: 'center',
-        position: 'relative',
-        elevation: 10,
+        position: 'absolute',
+        elevation: 15,
         justifyContent: 'center',
+        borderRadius: 7,
     },
 })
 

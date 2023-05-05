@@ -62,12 +62,12 @@ const Inicial = (props) => {
                         <View style={Inicial_sty.login}>
                             <View style={Inicial_sty.login.login_views}>
                                 <Text style={Inicial_sty.login.login_text}>E-mail</Text>
-                                <TextInput label={'Email'} style={Inicial_sty.login.login_box} value={email} onChangeText={setEmail}></TextInput>
+                                <TextInput placeholder='Digite o e-mail de sua conta...' placeholderTextColor={'#8B8B8B'} label={'Email'} style={Inicial_sty.login.login_box} value={email} onChangeText={setEmail}></TextInput>
                             </View>
                             <View style={Inicial_sty.login.login_views}>
                                 <Text style={[Inicial_sty.login.login_text, { paddingBottom: paddingSenha }]}>Senha</Text>
                                 <View style={Inicial_sty.login.messageErrorView}>
-                                    <TextInput secureTextEntry={true} label={'Senha'} style={Inicial_sty.login.messageErrorView.login_box} value={senha} onChangeText={setSenha}></TextInput>
+                                    <TextInput placeholder='Digite a senha de sua conta...' placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'Senha'} style={Inicial_sty.login.messageErrorView.login_box} value={senha} onChangeText={setSenha}></TextInput>
                                     {mensagemErro}
                                 </View>
                             </View>

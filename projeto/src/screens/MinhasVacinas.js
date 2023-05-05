@@ -67,19 +67,16 @@ const MinhasVacinas = (props) => {
                 <View style={MinhasVacinas_sty.container.containerView}>
                     <View style={MinhasVacinas_sty.inputContainer}>
                         <Image source={require('../../assets/images/icon_search.png')} style={MinhasVacinas_sty.icon} />
-                        <TextInput placeholder="PESQUISAR VACINA..." style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
+                        <TextInput placeholder="PESQUISAR VACINA..." placeholderTextColor={'#8B8B8B'} style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
                         {myComponents}
                     </View>
                 </View>
-
-                <TouchableOpacity style={MinhasVacinas_sty.buttonContainer} onPress={novaVacina}>
-                    <Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text>
-                </TouchableOpacity>
-
-
             </ScrollView>
+            <TouchableOpacity style={MinhasVacinas_sty.buttonContainer} onPress={novaVacina}>
+                <Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text>
+            </TouchableOpacity>
         </KeyboardAvoidingView >
     )
 }
