@@ -80,7 +80,7 @@ const Inicial = (props) => {
                             <TouchableOpacity style={Inicial_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
                                 <Text style={Inicial_sty.buttons_container.textButton1}>Criar minha conta</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={Inicial_sty.buttons_container.buttons3}>
+                            <TouchableOpacity style={Inicial_sty.buttons_container.buttons3} onPress={() => props.navigation.navigate("RecuperarSenha")}>
                                 <Text style={Inicial_sty.buttons_container.textButton2}>Esqueci minha senha</Text>
                             </TouchableOpacity>
                         </View>

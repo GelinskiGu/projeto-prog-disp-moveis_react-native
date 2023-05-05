@@ -9,6 +9,7 @@ import EditarVacina from "./EditarVacina";
 import ProximasVacinas from "./ProximasVacinas";
 import MinhasVacinas from "./MinhasVacinas";
 import MyDrawer from "../components/MyDrawer";
+import RecuperarSenha from "./RecuperarSenha";
 
 // TODO: Implementar navegação entre telas.
 
@@ -64,6 +65,15 @@ const Navigation = () => {
                     },
                     headerStyle: { backgroundColor: '#C1E7E3' },
                     headerTitle: 'Minhas Vacinas',
+                }} />
+                <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} options={{
+                    headerTitleStyle: {
+                        color: '#419ED7',
+                        fontFamily: 'AveriaLibre-Regular',
+                        fontSize: 36,
+                    },
+                    headerStyle: { backgroundColor: '#C1E7E3' },
+                    headerTitle: 'MyHealth',
                 }} />
             </Stack.Navigator>
         </NavigationContainer >
