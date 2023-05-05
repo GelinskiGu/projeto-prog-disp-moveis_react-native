@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
-import { EditarVacina_sty } from "../components/EditarVacina_sty";
+import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
 
 // TODO: Colocar icone de data.
 

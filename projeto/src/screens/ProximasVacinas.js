@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "reac
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
-import { ProximasVacinas_sty } from "../components/ProximasVacinas_sty";
+import { ProximasVacinas_sty } from "../components/MyStyles/ProximasVacinas_sty";
 import MyCard from "../components/MyCard/MyCard";
 
 import contas from "../data/Contas";

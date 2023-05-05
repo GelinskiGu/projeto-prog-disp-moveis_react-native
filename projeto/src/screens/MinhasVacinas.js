@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
 import MyVaccines from "../components/MyVaccines/MyVaccines";
-import { MinhasVacinas_sty } from "../components/MinhasVacinas_sty";
+import { MinhasVacinas_sty } from "../components/MyStyles/MinhasVacinas_sty";
 import contas from "../data/Contas";
 
 // TODO: Tirar os console log.

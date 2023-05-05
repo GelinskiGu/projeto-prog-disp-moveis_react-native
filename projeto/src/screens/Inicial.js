@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, ImageBackground, TextInput, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
-import { Inicial_sty } from "../components/Inicial_sty";
+import { Inicial_sty } from "../components/MyStyles/Inicial_sty";
 import { KeyboardAvoidingView } from 'react-native';
 
 import contas from "../data/Contas";

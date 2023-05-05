@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
-import { NovaVacina_sty } from "../components/NovaVacina_sty";
+import { NovaVacina_sty } from "../components/MyStyles/NovaVacina_sty";
 import contas from "../data/Contas";
 
 

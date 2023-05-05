@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
-import { NovaConta_sty } from "../components/NovaConta_sty";
+import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
 import contas from "../data/Contas";
-import { transformer } from "../../metro.config";
+
 
 // TODO: Tirar clgs
 // ** Layout Finalizado **
