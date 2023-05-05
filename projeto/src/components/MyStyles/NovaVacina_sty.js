@@ -26,7 +26,7 @@ const NovaVacina_sty = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',
-        marginLeft: 30,
+        marginLeft: 0,
     },
 
     containerRadioButton: {
@@ -59,12 +59,12 @@ const NovaVacina_sty = StyleSheet.create({
         height: 30,
         backgroundColor: '#FFFFFF',
         fontFamily: 'AveriaLibre-Regular',
-        paddingRight: 10,
-        marginRight: 50,
-        marginLeft: 10,
+        paddingRight: 0,
+        marginRight: 0,
+        marginLeft: 0,
         color: '#419ED7',
         alignSelf: 'center',
-        paddingVertical: 5,
+        paddingVertical: 0,
     },
 
     buttons: {
@@ -72,8 +72,8 @@ const NovaVacina_sty = StyleSheet.create({
             flex: 65,
             flexDirection: 'column',
             width: '100%',
-            marginRight: 50,
-            gap: -20,
+            marginRight: 0,
+            gap: 0,
         },
 
         textButton: {
@@ -91,13 +91,6 @@ const NovaVacina_sty = StyleSheet.create({
             borderWidth: 1,
             borderColor: '#419ED7',
             borderStyle: 'solid',
-            shadowColor: '#000',
-            shadowOffset: {
-                width: 0,
-                height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
             elevation: 5,
         },
 
@@ -113,13 +106,6 @@ const NovaVacina_sty = StyleSheet.create({
             borderColor: '#37BD6D',
             borderStyle: 'solid',
             borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-                width: 0,
-                height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 5,
             elevation: 5,
         }
 
