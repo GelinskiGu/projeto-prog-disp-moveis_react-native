@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native"
 
-const Font_sty = StyleSheet.create({
+const Inicial_sty = StyleSheet.create({
     container: {
+        paddingTop: 70,
         flex: 1,
         width: '100%',
         height: '100%',
         flexDirection: 'column',
         alignItems: 'center',
-        paddingVertical: 80,
-        gap: 50,
+        gap: 65,
         keyboard: {
             width: '100%',
             height: '100%',
@@ -19,8 +19,6 @@ const Font_sty = StyleSheet.create({
         flex: 2.5,
         alignItems: 'center',
         flexDirection: 'row',
-        gap: 10,
-        marginBottom: 20,
         header_text: {
             fontSize: 44,
             fontFamily: 'AveriaLibre-Regular',
@@ -38,12 +36,10 @@ const Font_sty = StyleSheet.create({
 
     text: {
         flex: 1,
-        width: '100%',
-        marginBottom: 7,
+        paddingHorizontal: 21,
         text_text: {
             flex: 30,
             fontSize: 32,
-            marginHorizontal: 10,
             textAlign: 'center',
             fontFamily: 'AveriaLibre-Regular',
             color: '#419ED7',
@@ -54,22 +50,19 @@ const Font_sty = StyleSheet.create({
         flex: 2,
         flexDirection: 'column',
         alignItems: 'center',
-        width: '100%',
-        gap: 15,
-        marginTop: 30,
-
-        marginBottom: 20,
+        paddingHorizontal: 25,
+        gap: 18,
         login_views: {
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            marginHorizontal: 25,
-            gap: 2,
+            gap: 5,
         },
         login_text: {
             flex: 1,
             fontSize: 16,
+            alignSelf: 'center',
             fontFamily: 'AveriaLibre-Regular',
             color: '#FFFFFF',
         },
@@ -81,53 +74,78 @@ const Font_sty = StyleSheet.create({
             alignSelf: 'center',
             height: 35,
             backgroundColor: '#FFFFFF',
-            marginVertical: 0,
-            paddingRight: 10,
             borderRadius: 6,
             paddingVertical: 10,
-        }
+        },
+        messageErrorView: {
+            flex: 6,
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+
+            textMessageError: {
+                fontFamily: 'AveriaLibre-Regular',
+                color: '#FD7979',
+                fontSize: 15,
+            },
+
+            login_box: {
+                flex: 6,
+                width: '100%',
+                color: '#419ED7',
+                fontFamily: 'AveriaLibre-Regular',
+                fontSize: 16,
+                alignSelf: 'center',
+                height: 35,
+                backgroundColor: '#FFFFFF',
+                alignSelf: 'center',
+                borderRadius: 6,
+                paddingVertical: 10,
+            },
+        },
     },
 
     buttons_container: {
         flex: 3,
         width: '100%',
-        justifyContent: 'space-between',
-        marginTop: 20,
-        gap: 40,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        paddingTop: 10,
+        gap: 55,
         buttons1: {
             backgroundColor: '#37BD6D',
-            height: 50,
+            height: 40,
             alignItems: 'center',
             justifyContent: 'center',
-            marginHorizontal: 120,
+            width: '35%',
             borderWidth: 1,
             borderColor: '#37BD6D',
             borderStyle: 'solid',
             borderRadius: 10,
+            elevation: 10,
         },
         buttons2: {
             backgroundColor: '#419ED7',
-            height: 50,
             alignItems: 'center',
             justifyContent: 'center',
-            marginHorizontal: 70,
+            width: '60%',
             height: 40,
             borderWidth: 1,
             borderColor: '#419ED7',
             borderStyle: 'solid',
             borderRadius: 10,
+            elevation: 10,
         },
         buttons3: {
             backgroundColor: '#B0CCDE',
-            height: 50,
             alignItems: 'center',
             justifyContent: 'center',
-            marginHorizontal: 70,
+            width: '60%',
             height: 35,
             borderWidth: 1,
             borderColor: '#B0CCDE',
             borderStyle: 'solid',
             borderRadius: 10,
+            elevation: 10,
         },
 
         textButton1: {
@@ -148,4 +166,4 @@ const Font_sty = StyleSheet.create({
 
 })
 
-export { Font_sty } 
+export { Inicial_sty } 
