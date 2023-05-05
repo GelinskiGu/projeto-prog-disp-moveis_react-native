@@ -34,7 +34,8 @@ const ProximasVacinas_sty = StyleSheet.create({
             },
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
-            elevation: 5,
+            borderRadius: 10,
+            elevation: 10,
         },
 
         text: {

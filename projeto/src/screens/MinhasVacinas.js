@@ -43,6 +43,15 @@ const MinhasVacinas = (props) => {
                     dose={doseObj}
                     data={dataObj}
                     dataDose={dataDoseObj}
+                    onPress={() => {
+                        props.navigation.navigate("EditarVacina", {
+                            emailUsuarioLogado: emailUsuarioLogado,
+                            data: dataObj,
+                            nome: nomeVacinaObj,
+                            dose: doseObj,
+                            proxVacinacao: objVacina.proxVacinacao,
+                        });
+                    }}
                 />;
                 components.push(component);
                 console.log(nomeVacinaObj, doseObj, dataObj, dataDoseObj);

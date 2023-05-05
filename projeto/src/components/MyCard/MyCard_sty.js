@@ -36,6 +36,7 @@ const MyCard_sty = StyleSheet.create({
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 17,
             paddingBottom: 8,
+            color: '#8B8B8B',
         },
     }
 })

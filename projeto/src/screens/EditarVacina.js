@@ -7,11 +7,11 @@ import { EditarVacina_sty } from "../components/EditarVacina_sty";
 
 // TODO: Colocar icone de data.
 
-const EditarVacina = () => {
-    const [dataVacinacao, setDataVacinacao] = useState('11/08/2022');
-    const [vacina, setVacina] = useState('Hepatite B');
-    const [dose, setDose] = useState('dose1');
-    const [proxVacinacao, setProxVacinacao] = useState('11/08/2023');
+const EditarVacina = (props) => {
+    const [dataVacinacao, setDataVacinacao] = useState(props.route.params?.data);
+    const [vacina, setVacina] = useState(props.route.params?.nome);
+    const [dose, setDose] = useState(props.route.params?.dose);
+    const [proxVacinacao, setProxVacinacao] = useState(props.route.params?.proxVacinacao);
 
 
     return (
@@ -39,8 +39,8 @@ const EditarVacina = () => {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
                                 value="dose1"
-                                status={dose == 'dose1' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose1')}
+                                status={dose == '1a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('1a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={EditarVacina_sty.textRadioButton}>1a. dose</Text>
@@ -48,8 +48,8 @@ const EditarVacina = () => {
                         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 0 }}>
                             <RadioButton
                                 value="dose2"
-                                status={dose == 'dose2' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose2')}
+                                status={dose == '2a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('2a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={EditarVacina_sty.textRadioButton}>2a. dose</Text>
@@ -57,8 +57,8 @@ const EditarVacina = () => {
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 127 }}>
                             <RadioButton
                                 value="dose3"
-                                status={dose == 'dose3' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('dose3')}
+                                status={dose == '3a. dose' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('3a. dose')}
                                 color="#419ED7"
                             />
                             <Text style={EditarVacina_sty.textRadioButton}>3a. dose</Text>
@@ -66,8 +66,8 @@ const EditarVacina = () => {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <RadioButton
                                 value="doseUnica"
-                                status={dose == 'doseUnica' ? 'checked' : 'unchecked'}
-                                onPress={() => setDose('doseUnica')}
+                                status={dose == 'Dose única' ? 'checked' : 'unchecked'}
+                                onPress={() => setDose('Dose única')}
                                 color="#419ED7"
                             />
                             <Text style={EditarVacina_sty.textRadioButton}>Dose única</Text>
