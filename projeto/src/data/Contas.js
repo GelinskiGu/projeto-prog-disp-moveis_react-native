@@ -28,11 +28,12 @@ let contas = {
                 proxVacinacao: 'Próxima dose em 11/10/2023'
             },
             "Covid": {
-                nome: "Covid",
+                nome: "Febre amarela",
                 dataVacinacao: '11/10/2022',
                 dose: '1a. dose',
                 proxVacinacao: 'Próxima dose em 11/10/2023'
             },
+
         },
     }
 };

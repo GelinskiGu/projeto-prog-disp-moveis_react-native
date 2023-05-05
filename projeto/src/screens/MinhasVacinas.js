@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Modal } from "react-native";
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -6,8 +6,6 @@ import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MinhasVacinas_sty";
 import contas from "../data/Contas";
 
-// TODO: Arrumar botão de Nova Vacina quando adicionado novos cards.
-// TODO: Input de search está bugado.
 // TODO: Tirar os console log.
 
 const MinhasVacinas = (props) => {
@@ -52,22 +50,22 @@ const MinhasVacinas = (props) => {
 
     return (
         <KeyboardAvoidingView style={MinhasVacinas_sty.container.containerKeyboard}>
-            <ScrollView>
+            <ScrollView style={{ flex: 1, flexDirection: 'column' }}>
                 <View style={MinhasVacinas_sty.container.containerView}>
                     <View style={MinhasVacinas_sty.inputContainer}>
-                        <Image source={require('../../assets/images/icon_search.png')} style={{ marginLeft: 10, width: 16, height: 16 }} />
-                        <TextInput placeholder="PESQUISAR VACINA..." style={{ textAlign: "center", paddingVertical: 1, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
+                        <Image source={require('../../assets/images/icon_search.png')} style={MinhasVacinas_sty.icon} />
+                        <TextInput placeholder="PESQUISAR VACINA..." style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
                         {myComponents}
                     </View>
                 </View>
 
-                <View style={{ flex: 0, alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <View style={MinhasVacinas_sty.button.container}>
-                        <TouchableOpacity onPress={novaVacina}><Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text></TouchableOpacity>
-                    </View>
-                </View>
+                <TouchableOpacity style={MinhasVacinas_sty.buttonContainer} onPress={novaVacina}>
+                    <Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text>
+                </TouchableOpacity>
+
+
             </ScrollView>
         </KeyboardAvoidingView >
     )

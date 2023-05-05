@@ -3,13 +3,14 @@ import { StyleSheet } from "react-native"
 const MinhasVacinas_sty = StyleSheet.create({
     container: {
         containerView: {
-            flex: 1,
+            flex: 2,
             flexDirection: 'column',
             alignItems: 'center',
             backgroundColor: '#ADD4D0',
             width: '100%',
             height: '100%',
             marginTop: 25,
+            zIndex: 0,
         },
 
         containerKeyboard: {
@@ -33,17 +34,21 @@ const MinhasVacinas_sty = StyleSheet.create({
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '35%',
+            alignSelf: 'flex-end',
+            width: '100%',
             backgroundColor: "#49B976",
-            marginTop: 200,
-            marginBottom: 50,
-            height: 30,
+            // marginTop: 200,
+            //  marginBottom: 50,
+            // height: 30,
+            elevation: 10,
+            borderRadius: 5,
         },
 
         text: {
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 17,
             color: '#FFFFFF',
+            alignSelf: 'center',
         },
 
 
@@ -56,8 +61,29 @@ const MinhasVacinas_sty = StyleSheet.create({
         height: 30,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        paddingVertical: -5,
+        //paddingVertical: -5,
         gap: 2
+    },
+
+    icon: {
+        width: 16,
+        height: 16,
+        marginLeft: 5,
+    },
+
+    buttonContainer: {
+        flex: 1,
+        backgroundColor: '#37BD6D',
+        width: '30%',
+        height: 30,
+        zIndex: 1,
+        marginTop: 40,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        alignSelf: 'center',
+        position: 'relative',
+        elevation: 10,
+        justifyContent: 'center',
     },
 })
 
