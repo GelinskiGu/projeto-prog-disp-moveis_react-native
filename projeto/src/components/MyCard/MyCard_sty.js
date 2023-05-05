@@ -11,9 +11,10 @@ const MyCard_sty = StyleSheet.create({
             width: '92%',
             gap: 0.5,
             borderRadius: 10,
-            marginTop: 10,
+            marginTop: 15,
             paddingHorizontal: 14,
             paddingVertical: 4,
+            elevation: 10.
         },
 
         containerKeyboard: {

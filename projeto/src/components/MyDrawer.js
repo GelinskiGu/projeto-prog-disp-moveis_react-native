@@ -23,7 +23,15 @@ const MyDrawer = (props) => {
                 headerStyle: { backgroundColor: '#C1E7E3' },
                 headerTitle: 'Minhas Vacinas',
             }} initialParams={{ emailUsuarioLogado: props.route.params.emailUsuarioLogado }} />
-            <Drawer.Screen name="ProximasVacinas" component={ProximasVacinas} />
+            <Drawer.Screen name="ProximasVacinas" component={ProximasVacinas} options={{
+                headerTitleStyle: {
+                    color: '#419ED7',
+                    fontFamily: 'AveriaLibre-Regular',
+                    fontSize: 36,
+                },
+                headerStyle: { backgroundColor: '#C1E7E3' },
+                headerTitle: 'Próximas Vacinas',
+            }} initialParams={{ emailUsuarioLogado: props.route.params.emailUsuarioLogado }} />
         </Drawer.Navigator>
     )
 }

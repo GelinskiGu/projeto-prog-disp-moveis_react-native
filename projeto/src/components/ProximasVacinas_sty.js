@@ -25,7 +25,7 @@ const ProximasVacinas_sty = StyleSheet.create({
             justifyContent: 'center',
             width: '35%',
             height: 30,
-            marginTop: 400,
+            marginTop: 200,
             backgroundColor: "#37BD6D",
             shadowColor: '#000',
             shadowOffset: {

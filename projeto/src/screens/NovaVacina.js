@@ -19,7 +19,7 @@ const NovaVacina = (props) => {
 
     const cadastrar = () => {
         console.log("Email na novaVacina: " + emailUsuarioLogado);
-        if (dataVacinacao && vacina && dose && proxVacinacao) {
+        if (dataVacinacao && vacina && dose) {
             const vacinaCriada = {
                 nome: vacina,
                 dataVacinacao: dataVacinacao,

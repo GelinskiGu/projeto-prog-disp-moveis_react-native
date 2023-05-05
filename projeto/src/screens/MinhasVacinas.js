@@ -32,7 +32,11 @@ const MinhasVacinas = (props) => {
                 const nomeVacinaObj = objVacina.nome;
                 const dataObj = objVacina.dataVacinacao;
                 const doseObj = objVacina.dose;
-                const dataDoseObj = objVacina.proxVacinacao;
+                let dataDoseObj;
+                if (objVacina.proxVacinacao)
+                    dataDoseObj = "Próxima dose em: " + objVacina.proxVacinacao;
+                else
+                    dataDoseObj = "Não há próxima dose";
                 const component = <MyVaccines
                     key={vacina}
                     nomeVacina={nomeVacinaObj}

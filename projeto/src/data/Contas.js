@@ -19,19 +19,19 @@ let contas = {
                 nome: "BCG",
                 dataVacinacao: '11/06/2022',
                 dose: 'Dose única',
-                proxVacinacao: 'Não há próxima dose',
+                proxVacinacao: '',
             },
             "Febre amarela": {
                 nome: "Febre amarela",
                 dataVacinacao: '11/10/2022',
                 dose: '1a. dose',
-                proxVacinacao: 'Próxima dose em 11/10/2023'
+                proxVacinacao: '11/10/2023'
             },
             "Covid": {
-                nome: "Febre amarela",
+                nome: "Covid",
                 dataVacinacao: '11/10/2022',
                 dose: '1a. dose',
-                proxVacinacao: 'Próxima dose em 11/10/2023'
+                proxVacinacao: '12/10/2023'
             },
 
         },
