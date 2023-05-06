@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
 
 import Inicial from "./Inicial";
 import NovaConta from "./NovaConta";
@@ -74,7 +74,13 @@ const Navigation = () => {
                     },
                     headerStyle: { backgroundColor: '#C1E7E3' },
                     headerTitle: 'MyHealth',
-                }} />
+                    headerLeft: () => (
+                        <Image
+                            source={require('../../assets/images/icon-vaccine.png')}
+                            style={{ marginLeft: 10, width: 35, height: 35 }}
+                        />)
+                }}
+                />
             </Stack.Navigator>
         </NavigationContainer >
     )

@@ -19,8 +19,8 @@ const RecuperarSenha = (props) => {
                     <TextInput placeholder="Seu e-mail..." placeholderTextColor={'#8B8B8B'} style={RecuperarSenha_sty.input} label={'Email'} value={email} onChangeText={setEmail}></TextInput>
                 </View>
 
-                <TouchableOpacity>
-                    <Text>Recuperar senha</Text>
+                <TouchableOpacity style={RecuperarSenha_sty.button} onPress={() => props.navigation.popToTop()}>
+                    <Text style={RecuperarSenha_sty.textButton}>Recuperar senha</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

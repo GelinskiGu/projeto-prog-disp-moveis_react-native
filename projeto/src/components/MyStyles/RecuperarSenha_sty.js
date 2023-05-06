@@ -19,7 +19,7 @@ const RecuperarSenha_sty = StyleSheet.create({
     },
 
     container: {
-        flex: 1,
+        flex: 5,
         flexDirection: 'row',
         alignItems: 'center',
         width: '90%',
@@ -44,6 +44,24 @@ const RecuperarSenha_sty = StyleSheet.create({
         paddingVertical: 5,
     },
 
+    button: {
+        flex: 0.3,
+        backgroundColor: '#37BD6D',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: '35%',
+        marginBottom: 60,
+        borderRadius: 10,
+        elevation: 10,
+    },
+
+    textButton: {
+        fontFamily: 'AveriaLibre-Regular',
+        fontSize: 16,
+        color: '#FFFFFF',
+        textAlign: 'center',
+
+    },
 
 })
 
