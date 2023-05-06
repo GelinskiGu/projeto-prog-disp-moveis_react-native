@@ -2,13 +2,13 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "reac
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import { TextInputMask } from "react-native-masked-text";
 
 import { NovaVacina_sty } from "../components/MyStyles/NovaVacina_sty";
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
 import contas from "../data/Contas";
 
 
-// TODO: Colocar icone de data
 
 const NovaVacina = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState('');
@@ -42,7 +42,17 @@ const NovaVacina = (props) => {
                     <View style={EditarVacina_sty.containerInputs}>
                         <Text style={EditarVacina_sty.text}>Data de vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInput placeholder="Data da vacina..." placeholderTextColor={'#8B8B8B'} label={'DataVacinacao'} style={EditarVacina_sty.inputs} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInput>
+                            <TextInputMask
+                                type={'datetime'}
+                                options={{
+                                    format: 'DD/MM/YYYY'
+                                }}
+                                placeholder="Data da vacina..."
+                                placeholderTextColor={'#8B8B8B'}
+                                label={'DataVacinacao'}
+                                style={EditarVacina_sty.inputs}
+                                value={dataVacinacao}
+                                onChangeText={setDataVacinacao}></TextInputMask>
                             <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
                         </View>
                     </View>
@@ -103,15 +113,17 @@ const NovaVacina = (props) => {
                     <View style={[EditarVacina_sty.containerInputs, { marginRight: 5 }]}>
                         <Text style={EditarVacina_sty.text}>Próxima vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInput placeholder="Próxima dose..." placeholderTextColor={'#8B8B8B'} label={'ProximaVacinacao'} style={EditarVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInput>
+                            <TextInputMask
+                                type={'datetime'}
+                                options={{
+                                    format: 'DD/MM/YYYY'
+                                }} placeholder="Próxima dose..." placeholderTextColor={'#8B8B8B'} label={'ProximaVacinacao'} style={EditarVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInputMask>
                             <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
                         </View>
                     </View>
-                    <View style={NovaVacina_sty.buttons.button2}>
-                        <TouchableOpacity onPress={cadastrar}>
-                            <Text style={NovaVacina_sty.buttons.textButton}>Cadastrar</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity onPress={cadastrar} style={NovaVacina_sty.buttons.button2}>
+                        <Text style={NovaVacina_sty.buttons.textButton}>Cadastrar</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </KeyboardAvoidingView >

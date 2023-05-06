@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "reac
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import { TextInputMask } from "react-native-masked-text";
 
 import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
 import contas from "../data/Contas";
@@ -87,7 +88,17 @@ const NovaConta = (props) => {
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Data nascimento</Text>
                         <View style={NovaConta_sty.dataContainer}>
-                            <TextInput placeholder="Data de nascimento..." placeholderTextColor={'#8B8B8B'} label={'DataNascimento'} style={NovaConta_sty.inputs} value={data} onChangeText={setData}></TextInput>
+                            <TextInputMask
+                                type={'datetime'}
+                                options={{
+                                    format: 'DD/MM/YYYY'
+                                }}
+                                placeholder="Data de nascimento..."
+                                placeholderTextColor={'#8B8B8B'}
+                                label={'DataNascimento'}
+                                style={NovaConta_sty.inputs}
+                                value={data}
+                                onChangeText={setData}></TextInputMask>
                             <Image source={require('../../assets/images/icon.png')} style={NovaConta_sty.image} />
                         </View>
                     </View>
@@ -106,9 +117,7 @@ const NovaConta = (props) => {
                             {mensagemSenha}
                         </View>
                     </View>
-                    <View style={NovaConta_sty.button}>
-                        <TouchableOpacity onPress={cadastrarUsuario}><Text style={NovaConta_sty.button.textButton}>Cadastrar</Text></TouchableOpacity>
-                    </View>
+                    <TouchableOpacity onPress={cadastrarUsuario} style={NovaConta_sty.button}><Text style={NovaConta_sty.button.textButton}>Cadastrar</Text></TouchableOpacity>
                 </View>
             </ScrollView>
         </KeyboardAvoidingView >

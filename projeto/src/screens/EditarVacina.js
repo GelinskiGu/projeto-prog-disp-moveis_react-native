@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Modal } fro
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import { TextInputMask } from "react-native-masked-text";
 
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
 
@@ -30,6 +31,22 @@ const EditarVacina = (props) => {
     const modalCancel = () => {
         setIsVisible(false);
     };
+
+    const salvarAlteracoes = () => {
+        if (dataVacinacao && vacina && dose) {
+            const vacinaAlterada = {
+                nome: vacina,
+                dataVacinacao: dataVacinacao,
+                dose: dose,
+                proxVacinacao: proxVacinacao,
+            };
+            if (contas[emailUsuarioLogado])
+                contas[emailUsuarioLogado].vacinas[vacina] = vacinaAlterada;
+        }
+        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
+        props.navigation.pop();
+        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
+    }
 
     return (
         <KeyboardAvoidingView style={EditarVacina_sty.container.containerKeyboard}>
@@ -61,7 +78,11 @@ const EditarVacina = (props) => {
                     <View style={EditarVacina_sty.containerInputs}>
                         <Text style={EditarVacina_sty.text}>Data de vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInput label={'DataVacinacao'} style={EditarVacina_sty.inputs} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInput>
+                            <TextInputMask
+                                type={'datetime'}
+                                options={{
+                                    format: 'DD/MM/YYYY'
+                                }} label={'DataVacinacao'} style={EditarVacina_sty.inputs} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInputMask>
                             <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
                         </View>
                     </View>
@@ -122,13 +143,17 @@ const EditarVacina = (props) => {
                     <View style={[EditarVacina_sty.containerInputs, { marginRight: 5 }]}>
                         <Text style={EditarVacina_sty.text}>Próxima vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInput label={'ProximaVacinacao'} style={EditarVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInput>
+                            <TextInputMask
+                                type={'datetime'}
+                                options={{
+                                    format: 'DD/MM/YYYY'
+                                }} label={'ProximaVacinacao'} style={EditarVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInputMask>
                             <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
                         </View>
                     </View>
                     <View style={EditarVacina_sty.containerButtons}>
 
-                        <TouchableOpacity style={EditarVacina_sty.containerButtons.button1}>
+                        <TouchableOpacity style={EditarVacina_sty.containerButtons.button1} onPress={salvarAlteracoes}>
                             <Text style={EditarVacina_sty.buttons.textButton}>Salvar alterações</Text>
                         </TouchableOpacity>
 
