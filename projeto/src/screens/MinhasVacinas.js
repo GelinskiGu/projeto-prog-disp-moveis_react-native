@@ -1,18 +1,11 @@
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, FlatList } from "react-native";
 import { useState, useEffect } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
 
 import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MyStyles/MinhasVacinas_sty";
 import contas from "../data/Contas";
 
-// TODO: Tirar os console log.
-
 const MinhasVacinas = (props) => {
-    const [dataVacinacao, setDataVacinacao] = useState('');
-    const [vacina, setVacina] = useState('');
-    const [dose, setDose] = useState('');
-    const [proxVacinacao, setProxVacinacao] = useState('');
     const [myComponents, setMyComponents] = useState([]);
     const [searchText, setSearchText] = useState('');
 
@@ -27,13 +20,10 @@ const MinhasVacinas = (props) => {
     );
 
     useEffect(() => {
-        console.log("Usuario logado: " + emailUsuarioLogado);
-
         const components = [];
         let id = 1;
         if (contas[emailUsuarioLogado]) {
             for (const vacina in contas[emailUsuarioLogado].vacinas) {
-                console.log(vacina);
                 const objVacina = contas[emailUsuarioLogado].vacinas[vacina];
                 const nomeVacinaObj = objVacina.nome;
                 const dataObj = objVacina.dataVacinacao;
@@ -62,7 +52,6 @@ const MinhasVacinas = (props) => {
                 }
                 components.push(component);
                 id++;
-                console.log(nomeVacinaObj, doseObj, dataObj, dataDoseObj);
             }
 
             setMyComponents(components);

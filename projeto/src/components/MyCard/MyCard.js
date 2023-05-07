@@ -1,15 +1,13 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
-import { useState, useEffect } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import { Text, TouchableOpacity } from "react-native";
 
 import { MyCard_sty } from "./MyCard_sty";
 
 const MyCard = (props) => {
     return (
-        <View style={MyCard_sty.container.containerView}>
+        <TouchableOpacity style={MyCard_sty.container.containerView} onPress={props.onPress}>
             <Text style={MyCard_sty.text.textName}>{props.nomeVacina}</Text>
             <Text style={MyCard_sty.text.textDate}>{props.data}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 

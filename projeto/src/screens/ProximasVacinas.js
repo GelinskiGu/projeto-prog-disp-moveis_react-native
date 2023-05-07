@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -8,13 +8,8 @@ import MyCard from "../components/MyCard/MyCard";
 import contas from "../data/Contas";
 
 
-// TODO: Arrumar botão de Nova Vacina quando adicionado novos cards.
 
 const ProximasVacinas = (props) => {
-    const [dataVacinacao, setDataVacinacao] = useState('');
-    const [vacina, setVacina] = useState('');
-    const [dose, setDose] = useState('');
-    const [proxVacinacao, setProxVacinacao] = useState('');
     const [myComponents, setMyComponents] = useState([]);
 
     const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
@@ -24,21 +19,34 @@ const ProximasVacinas = (props) => {
     }
 
     useEffect(() => {
-        console.log("Usuario logado: " + emailUsuarioLogado);
-
         const components = [];
+        let id = 0;
         if (contas[emailUsuarioLogado]) {
             for (const vacina in contas[emailUsuarioLogado].vacinas) {
-                console.log(vacina);
                 const objVacina = contas[emailUsuarioLogado].vacinas[vacina];
                 if (objVacina.proxVacinacao) {
                     const nomeVacinaObj = objVacina.nome;
                     const dataDoseObj = objVacina.proxVacinacao;
-                    const component = <MyCard key={vacina} nomeVacina={nomeVacinaObj} data={dataDoseObj} />;
+                    const dataObj = objVacina.dataVacinacao;
+                    const doseObj = objVacina.dose;
+                    const component = <MyCard
+                        key={id}
+                        nomeVacina={nomeVacinaObj}
+                        data={dataDoseObj}
+                        onPress={() => {
+                            props.navigation.navigate("EditarVacina", {
+                                emailUsuarioLogado: emailUsuarioLogado,
+                                data: dataObj,
+                                nome: nomeVacinaObj,
+                                dose: doseObj,
+                                proxVacinacao: objVacina.proxVacinacao,
+                            });
+                        }}
+                    />;
                     components.push(component);
+                    id++;
                 }
             }
-
             setMyComponents(components);
         }
     }, []);

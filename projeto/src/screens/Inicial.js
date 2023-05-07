@@ -6,7 +6,6 @@ import { KeyboardAvoidingView } from 'react-native';
 import contas from "../data/Contas";
 
 // TODO: Arrumar imagem de fundo.
-// TODO: Colocar mensagem de erro quando dados estão incorretos.
 
 // ** Tela praticamente finalizada, se der tempo arrumar imagem de fundo. **
 
@@ -16,20 +15,15 @@ const Inicial = (props) => {
     const [paddingSenha, setPaddingSenha] = useState(6);
     const [mensagemErro, setMensagemErro] = useState('');
 
-    const contador = 1;
-
     const entrar = () => {
-        console.log(contas);
         for (const key in contas) {
             if (key === email) {
-                console.log("Chegou aki" + key);
                 const emailUsuario = contas[key].email;
                 const senhaUsuario = contas[key].senha;
-                console.log(emailUsuario, senhaUsuario);
                 if (emailUsuario === email && senhaUsuario === senha) {
                     setMensagemErro('');
                     setPaddingSenha(6);
-                    props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuario, contador: contador });
+                    props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuario });
                     return;
                 }
                 else {
@@ -62,12 +56,27 @@ const Inicial = (props) => {
                         <View style={Inicial_sty.login}>
                             <View style={Inicial_sty.login.login_views}>
                                 <Text style={Inicial_sty.login.login_text}>E-mail</Text>
-                                <TextInput placeholder='Digite o e-mail de sua conta...' placeholderTextColor={'#8B8B8B'} label={'Email'} style={Inicial_sty.login.login_box} value={email} onChangeText={setEmail}></TextInput>
+                                <TextInput
+                                    keyboardType="email-address"
+                                    placeholder='Digite o e-mail de sua conta...'
+                                    placeholderTextColor={'#8B8B8B'}
+                                    label={'Email'}
+                                    style={Inicial_sty.login.login_box}
+                                    value={email}
+                                    onChangeText={setEmail}></TextInput>
                             </View>
                             <View style={Inicial_sty.login.login_views}>
                                 <Text style={[Inicial_sty.login.login_text, { paddingBottom: paddingSenha }]}>Senha</Text>
                                 <View style={Inicial_sty.login.messageErrorView}>
-                                    <TextInput placeholder='Digite a senha de sua conta...' placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'Senha'} style={Inicial_sty.login.messageErrorView.login_box} value={senha} onChangeText={setSenha}></TextInput>
+                                    <TextInput
+                                        placeholder='Digite a senha de sua conta...'
+                                        placeholderTextColor={'#8B8B8B'}
+                                        secureTextEntry={true}
+                                        label={'Senha'}
+                                        style={Inicial_sty.login.messageErrorView.login_box}
+                                        value={senha}
+                                        onChangeText={setSenha}
+                                    ></TextInput>
                                     {mensagemErro}
                                 </View>
                             </View>

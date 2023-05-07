@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { TextInputMask } from "react-native-masked-text";
@@ -19,7 +19,6 @@ const NovaVacina = (props) => {
     const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
 
     const cadastrar = () => {
-        console.log("Email na novaVacina: " + emailUsuarioLogado);
         if (dataVacinacao && vacina && dose) {
             const vacinaCriada = {
                 nome: vacina,

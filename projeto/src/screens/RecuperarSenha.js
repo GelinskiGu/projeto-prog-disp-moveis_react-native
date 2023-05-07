@@ -1,12 +1,7 @@
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, ScrollView } from "react-native";
-import { useState, useEffect } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
+import { useState } from 'react';
 
 import { RecuperarSenha_sty } from "../components/MyStyles/RecuperarSenha_sty";
-
-import contas from "../data/Contas";
-
-
 
 const RecuperarSenha = (props) => {
     const [email, setEmail] = useState('');

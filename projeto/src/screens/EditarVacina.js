@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Modal } from "react-native";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { TextInputMask } from "react-native-masked-text";
@@ -20,9 +20,7 @@ const EditarVacina = (props) => {
 
     const modalYes = () => {
         setIsVisible(false);
-        console.log(contas[emailUsuarioLogado]);
         delete contas[emailUsuarioLogado].vacinas[vacina];
-        console.log(contas[emailUsuarioLogado].vacinas);
         props.navigation.pop();
         props.navigation.pop();
         props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });

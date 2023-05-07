@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { TextInputMask } from "react-native-masked-text";
@@ -8,7 +8,6 @@ import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
 import contas from "../data/Contas";
 
 
-// TODO: Tirar clgs
 // ** Layout Finalizado **
 
 const NovaConta = (props) => {
@@ -37,7 +36,6 @@ const NovaConta = (props) => {
                 vacinas: {},
             };
             contas[email] = pessoa;
-            console.log(contas);
             props.navigation.pop();
         }
     }
@@ -104,7 +102,7 @@ const NovaConta = (props) => {
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>E-mail</Text>
-                        <TextInput placeholder="Seu e-mail..." placeholderTextColor={'#8B8B8B'} label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
+                        <TextInput keyboardType="email-address" placeholder="Seu e-mail..." placeholderTextColor={'#8B8B8B'} label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Senha</Text>

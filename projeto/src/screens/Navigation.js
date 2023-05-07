@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableOpacity, Image } from "react-native";
+import { Image } from "react-native";
 
 import Inicial from "./Inicial";
 import NovaConta from "./NovaConta";
@@ -11,7 +11,6 @@ import MinhasVacinas from "./MinhasVacinas";
 import MyDrawer from "../components/MyDrawer";
 import RecuperarSenha from "./RecuperarSenha";
 
-// TODO: Implementar navegação entre telas.
 
 const Stack = createStackNavigator();
 

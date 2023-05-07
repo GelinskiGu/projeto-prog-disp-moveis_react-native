@@ -48,6 +48,7 @@ const MyVaccines_sty = StyleSheet.create({
             fontFamily: 'AveriaLibre-Regular',
             fontSize: 13,
             color: '#8B8B8B',
+            paddingVertical: 2,
         },
 
         textDoseDate: {
