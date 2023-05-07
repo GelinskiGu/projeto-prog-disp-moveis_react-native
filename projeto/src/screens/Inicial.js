@@ -5,10 +5,6 @@ import { KeyboardAvoidingView } from 'react-native';
 
 import contas from "../data/Contas";
 
-// TODO: Arrumar imagem de fundo.
-
-// ** Tela praticamente finalizada, se der tempo arrumar imagem de fundo. **
-
 const Inicial = (props) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -40,7 +36,7 @@ const Inicial = (props) => {
 
     return (
 
-        <ImageBackground source={require('../../assets/images/InicialBackgroundImage.jpg')} style={{ width: '100%', height: '100%' }}>
+        <ImageBackground source={require('../../assets/images/vacina.jpg')} style={{ width: '100%', height: '100%' }}>
             <KeyboardAvoidingView style={Inicial_sty.container.keyboard} behavior="height">
                 <ScrollView>
                     <View style={Inicial_sty.container}>
