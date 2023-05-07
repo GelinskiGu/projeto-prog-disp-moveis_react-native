@@ -39,9 +39,6 @@ const MinhasVacinas_sty = StyleSheet.create({
             alignSelf: 'flex-end',
             width: '100%',
             backgroundColor: "#49B976",
-            // marginTop: 200,
-            //  marginBottom: 50,
-            // height: 30,
             elevation: 10,
             borderRadius: 5,
         },
@@ -63,7 +60,6 @@ const MinhasVacinas_sty = StyleSheet.create({
         height: 30,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        //paddingVertical: -5,
         gap: 2
     },
 
