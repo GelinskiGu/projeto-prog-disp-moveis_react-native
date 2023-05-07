@@ -66,7 +66,7 @@ const MinhasVacinas = (props) => {
                         <Image source={require('../../assets/images/icon_search.png')} style={MinhasVacinas_sty.icon} />
                         <TextInput placeholder="PESQUISAR VACINA..."
                             placeholderTextColor={'#8B8B8B'}
-                            style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular', color: '#3F92C5', fontSize: 14 }}
+                            style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular', color: '#3F92C5', fontSize: 14, width: '100%' }}
                             onChangeText={(text) => setSearchText(text)}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
