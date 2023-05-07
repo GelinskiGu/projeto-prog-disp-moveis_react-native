@@ -22,6 +22,7 @@ const MinhasVacinas_sty = StyleSheet.create({
         },
 
         containerMyVaccines: {
+            flex: 1,
             width: '100%',
             flexDirection: 'row',
             flexWrap: 'wrap',

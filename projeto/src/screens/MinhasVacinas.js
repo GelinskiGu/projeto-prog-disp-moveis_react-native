@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Modal } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, FlatList } from "react-native";
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -14,6 +14,7 @@ const MinhasVacinas = (props) => {
     const [dose, setDose] = useState('');
     const [proxVacinacao, setProxVacinacao] = useState('');
     const [myComponents, setMyComponents] = useState([]);
+    const [searchText, setSearchText] = useState('');
 
     const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
 
@@ -21,10 +22,15 @@ const MinhasVacinas = (props) => {
         props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });
     }
 
+    const filteredList = myComponents.filter((item) =>
+        item.nomeVacina.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     useEffect(() => {
         console.log("Usuario logado: " + emailUsuarioLogado);
 
         const components = [];
+        let id = 1;
         if (contas[emailUsuarioLogado]) {
             for (const vacina in contas[emailUsuarioLogado].vacinas) {
                 console.log(vacina);
@@ -37,13 +43,14 @@ const MinhasVacinas = (props) => {
                     dataDoseObj = "Próxima dose em: " + objVacina.proxVacinacao;
                 else
                     dataDoseObj = "Não há próxima dose";
-                const component = <MyVaccines
-                    key={vacina}
-                    nomeVacina={nomeVacinaObj}
-                    dose={doseObj}
-                    data={dataObj}
-                    dataDose={dataDoseObj}
-                    onPress={() => {
+
+                const component = {
+                    id: id,
+                    nomeVacina: nomeVacinaObj,
+                    dose: doseObj,
+                    data: dataObj,
+                    dataDose: dataDoseObj,
+                    onPress: () => {
                         props.navigation.navigate("EditarVacina", {
                             emailUsuarioLogado: emailUsuarioLogado,
                             data: dataObj,
@@ -51,9 +58,10 @@ const MinhasVacinas = (props) => {
                             dose: doseObj,
                             proxVacinacao: objVacina.proxVacinacao,
                         });
-                    }}
-                />;
+                    }
+                }
                 components.push(component);
+                id++;
                 console.log(nomeVacinaObj, doseObj, dataObj, dataDoseObj);
             }
 
@@ -62,22 +70,30 @@ const MinhasVacinas = (props) => {
     }, []);
 
     return (
-        <KeyboardAvoidingView style={MinhasVacinas_sty.container.containerKeyboard}>
-            <ScrollView style={{ flex: 1, flexDirection: 'column' }}>
+        <View style={MinhasVacinas_sty.container.containerKeyboard}>
+            <ScrollView>
                 <View style={MinhasVacinas_sty.container.containerView}>
                     <View style={MinhasVacinas_sty.inputContainer}>
                         <Image source={require('../../assets/images/icon_search.png')} style={MinhasVacinas_sty.icon} />
-                        <TextInput placeholder="PESQUISAR VACINA..." placeholderTextColor={'#8B8B8B'} style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular' }}></TextInput>
+                        <TextInput placeholder="PESQUISAR VACINA..."
+                            placeholderTextColor={'#8B8B8B'}
+                            style={{ paddingVertical: 0, fontFamily: 'AveriaLibre-Regular', color: '#3F92C5', fontSize: 14 }}
+                            onChangeText={(text) => setSearchText(text)}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
-                        {myComponents}
+                        <FlatList data={filteredList}
+                            renderItem={MyVaccines}
+                            keyExtractor={item => item.id}
+                            numColumns={2}
+                            scrollEnabled={false} />
                     </View>
                 </View>
             </ScrollView>
+
             <TouchableOpacity style={MinhasVacinas_sty.buttonContainer} onPress={novaVacina}>
                 <Text style={MinhasVacinas_sty.button.text}>Nova Vacina</Text>
             </TouchableOpacity>
-        </KeyboardAvoidingView >
+        </View >
     )
 }
 
