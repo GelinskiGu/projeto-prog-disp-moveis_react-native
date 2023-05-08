@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ImageBackground, TextInput, ScrollView } 
 import { useState, useEffect } from 'react';
 import { Inicial_sty } from "../components/MyStyles/Inicial_sty";
 import { KeyboardAvoidingView } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import contas from "../data/Contas";
 
@@ -36,62 +37,72 @@ const Inicial = (props) => {
 
     return (
 
-        <ImageBackground source={require('../../assets/images/vacina.jpg')} style={{ width: '100%', height: '100%' }}>
-            <KeyboardAvoidingView style={Inicial_sty.container.keyboard} behavior="height">
-                <ScrollView>
-                    <View style={Inicial_sty.container}>
-                        <View style={Inicial_sty.header}>
-                            <ImageBackground source={require('../../assets/images/icon-vaccine.png')} style={Inicial_sty.header.headerIcon} />
-                            <Text style={Inicial_sty.header.header_text}>MyHealth</Text>
-                        </View>
-
-                        <View style={Inicial_sty.text}>
-                            <Text style={Inicial_sty.text.text_text}>Controle as suas vacinas e fique seguro</Text>
-                        </View>
-
-                        <View style={Inicial_sty.login}>
-                            <View style={Inicial_sty.login.login_views}>
-                                <Text style={Inicial_sty.login.login_text}>E-mail</Text>
-                                <TextInput
-                                    keyboardType="email-address"
-                                    placeholder='Digite o e-mail de sua conta...'
-                                    placeholderTextColor={'#8B8B8B'}
-                                    label={'Email'}
-                                    style={Inicial_sty.login.login_box}
-                                    value={email}
-                                    onChangeText={setEmail}></TextInput>
+        <ImageBackground source={require('../../assets/images/InicialBackgroundImage.jpg')} style={{ width: '100%', height: '100%' }}>
+            <LinearGradient colors={[
+                'rgba(84, 131, 126, 0.2)',
+                'rgba(255, 255, 255, 0.62)',
+                'rgba(221, 230, 229, 0.68)',
+                'rgba(59, 94, 90, 0.51)'
+            ]}
+                locations={[0.0028, 0.0989, 0.3541, 1.0065]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}>
+                <KeyboardAvoidingView style={Inicial_sty.container.keyboard} behavior="height">
+                    <ScrollView>
+                        <View style={Inicial_sty.container}>
+                            <View style={Inicial_sty.header}>
+                                <ImageBackground source={require('../../assets/images/icon-vaccine.png')} style={Inicial_sty.header.headerIcon} />
+                                <Text style={Inicial_sty.header.header_text}>MyHealth</Text>
                             </View>
-                            <View style={Inicial_sty.login.login_views}>
-                                <Text style={[Inicial_sty.login.login_text, { paddingBottom: paddingSenha }]}>Senha</Text>
-                                <View style={Inicial_sty.login.messageErrorView}>
+
+                            <View style={Inicial_sty.text}>
+                                <Text style={Inicial_sty.text.text_text}>Controle as suas vacinas e fique seguro</Text>
+                            </View>
+
+                            <View style={Inicial_sty.login}>
+                                <View style={Inicial_sty.login.login_views}>
+                                    <Text style={Inicial_sty.login.login_text}>E-mail</Text>
                                     <TextInput
-                                        placeholder='Digite a senha de sua conta...'
+                                        keyboardType="email-address"
+                                        placeholder='Digite o e-mail de sua conta...'
                                         placeholderTextColor={'#8B8B8B'}
-                                        secureTextEntry={true}
-                                        label={'Senha'}
-                                        style={Inicial_sty.login.messageErrorView.login_box}
-                                        value={senha}
-                                        onChangeText={setSenha}
-                                    ></TextInput>
-                                    {mensagemErro}
+                                        label={'Email'}
+                                        style={Inicial_sty.login.login_box}
+                                        value={email}
+                                        onChangeText={setEmail}></TextInput>
+                                </View>
+                                <View style={Inicial_sty.login.login_views}>
+                                    <Text style={[Inicial_sty.login.login_text, { paddingBottom: paddingSenha }]}>Senha</Text>
+                                    <View style={Inicial_sty.login.messageErrorView}>
+                                        <TextInput
+                                            placeholder='Digite a senha de sua conta...'
+                                            placeholderTextColor={'#8B8B8B'}
+                                            secureTextEntry={true}
+                                            label={'Senha'}
+                                            style={Inicial_sty.login.messageErrorView.login_box}
+                                            value={senha}
+                                            onChangeText={setSenha}
+                                        ></TextInput>
+                                        {mensagemErro}
+                                    </View>
                                 </View>
                             </View>
-                        </View>
 
-                        <View style={Inicial_sty.buttons_container}>
-                            <TouchableOpacity style={Inicial_sty.buttons_container.buttons1} onPress={entrar}>
-                                <Text style={Inicial_sty.buttons_container.textButton1}>Entrar</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={Inicial_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
-                                <Text style={Inicial_sty.buttons_container.textButton1}>Criar minha conta</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={Inicial_sty.buttons_container.buttons3} onPress={() => props.navigation.navigate("RecuperarSenha")}>
-                                <Text style={Inicial_sty.buttons_container.textButton2}>Esqueci minha senha</Text>
-                            </TouchableOpacity>
+                            <View style={Inicial_sty.buttons_container}>
+                                <TouchableOpacity style={Inicial_sty.buttons_container.buttons1} onPress={entrar}>
+                                    <Text style={Inicial_sty.buttons_container.textButton1}>Entrar</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={Inicial_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
+                                    <Text style={Inicial_sty.buttons_container.textButton1}>Criar minha conta</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={Inicial_sty.buttons_container.buttons3} onPress={() => props.navigation.navigate("RecuperarSenha")}>
+                                    <Text style={Inicial_sty.buttons_container.textButton2}>Esqueci minha senha</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </LinearGradient>
         </ImageBackground >
 
     )
