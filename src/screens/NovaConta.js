@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Button } from "react-native";
 import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { TextInputMask } from "react-native-masked-text";
+import DatePicker from 'react-native-date-picker'
 
 import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
 import contas from "../data/Contas";
@@ -13,12 +14,15 @@ import contas from "../data/Contas";
 const NovaConta = (props) => {
     const [nome, setNome] = useState('');
     const [sexo, setSexo] = useState('');
-    const [data, setData] = useState('');
+    const [data, setData] = useState(new Date());
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [senhaRep, setSenhaRep] = useState('');
     const [margem, setMargem] = useState(0);
     const [mensagemSenha, setMensagemSenha] = useState('');
+    const [placeholderDateText, setPlaceholderDateText] = useState('Selecione a data...');
+    const [placeholderDateColor, setPlaceholderDateColor] = useState('#8B8B8B');
+    const [open, setOpen] = useState(false);
 
 
     const cadastrarUsuario = () => {
@@ -30,7 +34,7 @@ const NovaConta = (props) => {
             const pessoa = {
                 nomeCompleto: nome,
                 sexo: sexo,
-                dataNascimento: data,
+                dataNascimento: placeholderDateText,
                 email: email,
                 senha: senha,
                 vacinas: {},
@@ -86,18 +90,14 @@ const NovaConta = (props) => {
                     <View style={NovaConta_sty.containerInputs}>
                         <Text style={NovaConta_sty.text}>Data nascimento</Text>
                         <View style={NovaConta_sty.dataContainer}>
-                            <TextInputMask
-                                type={'datetime'}
-                                options={{
-                                    format: 'DD/MM/YYYY'
-                                }}
-                                placeholder="Data de nascimento..."
-                                placeholderTextColor={'#8B8B8B'}
-                                label={'DataNascimento'}
+                            <TouchableOpacity
+                                onPress={() => setOpen(true)}
                                 style={NovaConta_sty.inputs}
-                                value={data}
-                                onChangeText={setData}></TextInputMask>
-                            <Image source={require('../../assets/images/icon.png')} style={NovaConta_sty.image} />
+                            ><Text style={[NovaConta_sty.placeholderText, { color: placeholderDateColor }]}>{placeholderDateText}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => setOpen(true)}>
+                                <Image source={require('../../assets/images/icon.png')} style={NovaConta_sty.image} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
@@ -117,6 +117,32 @@ const NovaConta = (props) => {
                     </View>
                     <TouchableOpacity onPress={cadastrarUsuario} style={NovaConta_sty.button}><Text style={NovaConta_sty.button.textButton}>Cadastrar</Text></TouchableOpacity>
                 </View>
+                <DatePicker
+                    modal
+                    open={open}
+                    date={data}
+                    androidVariant="nativeAndroid"
+                    mode="date"
+                    locale="pt-BR"
+                    title="Selecione uma data"
+                    cancelText="Cancelar"
+                    confirmText="Confirmar"
+                    onConfirm={(data) => {
+                        const day = data.getDate();
+                        const month = data.getMonth() + 1;
+                        const year = data.getFullYear();
+
+                        const formattedDay = day < 10 ? `0${day}` : day;
+                        const formattedMonth = month < 10 ? `0${month}` : month;
+                        setOpen(false)
+                        setPlaceholderDateText(`${formattedDay}/${formattedMonth}/${year}`)
+                        setPlaceholderDateColor("#419ED7")
+                        setData(data)
+                    }}
+                    onCancel={() => {
+                        setOpen(false)
+                    }}
+                />
             </ScrollView>
         </KeyboardAvoidingView >
     )
