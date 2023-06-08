@@ -116,6 +116,17 @@ const NovaConta_sty = StyleSheet.create({
         height: 20,
         marginRight: 5,
     },
+
+    dateInput: {
+        backgroundColor: '#FFFFFF',
+    },
+
+    placeholderText: {
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Regular',
+        color: '#8B8B8B',
+        marginLeft: 5,
+    },
 })
 
 export { NovaConta_sty } 
