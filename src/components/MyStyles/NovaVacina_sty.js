@@ -111,6 +111,18 @@ const NovaVacina_sty = StyleSheet.create({
 
     },
 
+    dateInput: {
+        backgroundColor: '#FFFFFF',
+    },
+
+    placeholderText: {
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Regular',
+        color: '#8B8B8B',
+        marginLeft: 5,
+        paddingTop: 5,
+    },
+
 })
 
 export { NovaVacina_sty } 

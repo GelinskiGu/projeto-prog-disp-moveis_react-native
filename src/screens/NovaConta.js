@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Button } fr
 import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { TextInputMask } from "react-native-masked-text";
 import DatePicker from 'react-native-date-picker'
 
 import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
