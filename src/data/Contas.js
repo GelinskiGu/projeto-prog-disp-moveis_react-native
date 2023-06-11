@@ -3,7 +3,7 @@ let contas = {
         dataNascimento: '06/11/2002',
         email: 'teste@teste.com',
         nomeCompleto: 'Gustavo Gelinski',
-        senha: 'teste123',
+        password: 'teste123',
         sexo: 'masculino',
         vacinas: {},
     },
@@ -12,7 +12,7 @@ let contas = {
         dataNascimento: '11/08/2022',
         email: 'jurandir.pereira@hotmail.com',
         nomeCompleto: 'Jurandir Pereira',
-        senha: '123123123',
+        password: '123123123',
         sexo: 'masculino',
         vacinas: {
             "BCG": {
@@ -40,6 +40,24 @@ let contas = {
                 proxVacinacao: '11/10/2022'
             },
         },
+    },
+
+    'testefirebase@teste2.com': {
+        dataNascimento: '06/11/2002',
+        email: 'testefirebase@teste2.com',
+        nomeCompleto: 'Gustavo Gelinski',
+        password: 'teste123',
+        sexo: 'masculino',
+        vacinas: {},
+    },
+
+    'testefirebase@teste.com': {
+        dataNascimento: '06/11/2002',
+        email: 'testefirebase@teste.com',
+        nomeCompleto: 'Gustavo Gelinski',
+        password: 'teste123',
+        sexo: 'masculino',
+        vacinas: {},
     }
 };
 

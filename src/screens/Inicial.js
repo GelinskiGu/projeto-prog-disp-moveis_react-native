@@ -2,22 +2,57 @@ import { View, Text, TouchableOpacity, ImageBackground, TextInput, ScrollView } 
 import { useState, useEffect } from 'react';
 import { Inicial_sty } from "../components/MyStyles/Inicial_sty";
 import { KeyboardAvoidingView } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../firebase/config";
+
 import LinearGradient from 'react-native-linear-gradient';
 
 import contas from "../data/Contas";
 
 const Inicial = (props) => {
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setSenha] = useState('');
     const [paddingSenha, setPaddingSenha] = useState(6);
     const [mensagemErro, setMensagemErro] = useState('');
+
+    const authenticate = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userLogged) => {
+                console.log("Usuário autenticado com sucesso: " + JSON.stringify(userLogged))
+                setMensagemErro('');
+                setPaddingSenha(6);
+                props.navigation.navigate("MyDrawer", { emailUsuarioLogado: 'testefirebase@teste.com' });
+            })
+            .catch((error) => {
+                console.log("Falha ao autenticar o usuário: " + JSON.stringify(error))
+                setPaddingSenha(24);
+                if (error.code === 'auth/user-not-found') {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>E-mail não cadastrado.</Text>);
+                }
+                else if (error.code === 'auth/wrong-password') {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>Senha incorreta.</Text>);
+                }
+                else if (error.code === 'auth/invalid-email') {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>E-mail inválido.</Text>);
+                }
+                else if (error.code === 'auth/too-many-requests') {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>Muitas tentativas. Tente novamente mais tarde.</Text>);
+                }
+                else if (error.code === 'auth/network-request-failed') {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>Sem conexão com a internet.</Text>);
+                }
+                else {
+                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>Erro.</Text>);
+                }
+            })
+    }
 
     const entrar = () => {
         for (const key in contas) {
             if (key === email) {
                 const emailUsuario = contas[key].email;
-                const senhaUsuario = contas[key].senha;
-                if (emailUsuario === email && senhaUsuario === senha) {
+                const passwordUsuario = contas[key].password;
+                if (emailUsuario === email && passwordUsuario === password) {
                     setMensagemErro('');
                     setPaddingSenha(6);
                     props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuario });
@@ -80,7 +115,7 @@ const Inicial = (props) => {
                                             secureTextEntry={true}
                                             label={'Senha'}
                                             style={Inicial_sty.login.messageErrorView.login_box}
-                                            value={senha}
+                                            value={password}
                                             onChangeText={setSenha}
                                         ></TextInput>
                                         {mensagemErro}
@@ -89,7 +124,7 @@ const Inicial = (props) => {
                             </View>
 
                             <View style={Inicial_sty.buttons_container}>
-                                <TouchableOpacity style={Inicial_sty.buttons_container.buttons1} onPress={entrar}>
+                                <TouchableOpacity style={Inicial_sty.buttons_container.buttons1} onPress={authenticate}>
                                     <Text style={Inicial_sty.buttons_container.textButton1}>Entrar</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={Inicial_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
