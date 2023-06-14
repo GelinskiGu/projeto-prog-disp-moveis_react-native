@@ -6,6 +6,9 @@ import DatePicker from 'react-native-date-picker'
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/config";
+
 import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
 import contas from "../data/Contas";
 
@@ -37,7 +40,6 @@ const NovaConta = (props) => {
                 sexo: sexo,
                 dataNascimento: placeholderDateText,
                 email: email,
-                password: password,
                 vacinas: {},
             };
             contas[email] = pessoa;
@@ -50,10 +52,32 @@ const NovaConta = (props) => {
             setMargem(20);
             setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Senha não confere!</Text>);
         }
+        else if (nome == "" || sexo == "" || email == "" || password == "" || passwordRep == "") {
+            setMargem(20);
+            setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Preencha todos os campos!</Text>);
+        }
         else {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     console.log("Usuário criado com sucesso: " + JSON.stringify(userCredential));
+
+                    const dbCollection = collection(db, "users");
+                    const user = {
+                        nomeCompleto: nome,
+                        sexo: sexo,
+                        dataNascimento: placeholderDateText,
+                        email: email,
+                        password: password,
+                        vacinas: {},
+                    };
+                    return addDoc(dbCollection, user);
+                })
+                .then((refDoc) => {
+                    const vaccineCollection = collection(db, "users", refDoc.id, "vaccines");
+                    return addDoc(vaccineCollection, {});
+                })
+                .then(() => {
+                    console.log("Usuário inserido com sucesso!");
                     props.navigation.pop();
                 })
                 .catch((error) => {
@@ -63,6 +87,8 @@ const NovaConta = (props) => {
                         setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Senha fraca!</Text>);
                     else if (error.code == "auth/email-already-in-use")
                         setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Email já cadastrado!</Text>);
+                    else if (error.code == "auth/invalid-email")
+                        setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Email inválido!</Text>);
                     else
                         setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Erro ao criar usuário!</Text>);
                 });
@@ -130,13 +156,13 @@ const NovaConta = (props) => {
                         <TextInput keyboardType="email-address" placeholder="Seu e-mail..." placeholderTextColor={'#8B8B8B'} label={'Email'} style={NovaConta_sty.inputs} value={email} onChangeText={setEmail}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
-                        <Text style={NovaConta_sty.text}>Password</Text>
-                        <TextInput placeholder="Sua password..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'Password'} style={NovaConta_sty.inputs} value={password} onChangeText={setPassword}></TextInput>
+                        <Text style={NovaConta_sty.text}>Senha</Text>
+                        <TextInput placeholder="Sua senha..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'Password'} style={NovaConta_sty.inputs} value={password} onChangeText={setPassword}></TextInput>
                     </View>
                     <View style={NovaConta_sty.containerInputs}>
-                        <Text style={[NovaConta_sty.text, { marginBottom: margem, }]}> Repetir password</Text>
+                        <Text style={[NovaConta_sty.text, { marginBottom: margem, }]}> Repetir senha</Text>
                         <View style={NovaConta_sty.containerInputWrongField}>
-                            <TextInput placeholder="Repita sua password..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'PasswordRep'} style={NovaConta_sty.inputs} value={passwordRep} onChangeText={setPasswordRep}></TextInput>
+                            <TextInput placeholder="Repita sua senha..." placeholderTextColor={'#8B8B8B'} secureTextEntry={true} label={'PasswordRep'} style={NovaConta_sty.inputs} value={passwordRep} onChangeText={setPasswordRep}></TextInput>
                             {mensagemPassword}
                         </View>
                     </View>
