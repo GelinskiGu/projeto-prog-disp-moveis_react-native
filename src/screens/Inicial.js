@@ -4,10 +4,12 @@ import { Inicial_sty } from "../components/MyStyles/Inicial_sty";
 import { KeyboardAvoidingView } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../firebase/config";
+import { useDispatch } from 'react-redux'
+import { reducerSetUserData } from "../../redux/userDataSlice";
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import contas from "../data/Contas";
 
 const Inicial = (props) => {
     const [email, setEmail] = useState('');
@@ -15,13 +17,48 @@ const Inicial = (props) => {
     const [paddingSenha, setPaddingSenha] = useState(6);
     const [mensagemErro, setMensagemErro] = useState('');
 
+    const dispatch = useDispatch()
+
+    const updateUserDataRedux = () => {
+        const usersCollectionRef = collection(db, 'users');
+        const queryByEmail = query(usersCollectionRef, where('email', '==', email));
+        getDocs(queryByEmail)
+            .then((querySnapshot) => {
+                if (!querySnapshot.empty) {
+                    const userDoc = querySnapshot.docs[0];
+                    const userData = userDoc.data();
+
+                    const userId = userDoc.id;
+                    const name = userData.fullName;
+                    const birthDate = userData.birthDate;
+                    const gender = userData.gender;
+
+                    dispatch(reducerSetUserData({
+                        userLoggedId: userId,
+                        name: name,
+                        email: email,
+                        birthDate: birthDate,
+                        gender: gender,
+                    }))
+                } else {
+                    console.log("Nenhum usuário encontrado com o email fornecido.");
+                }
+            })
+            .catch((error) => {
+                console.log('Erro ao buscar usuário:', error);
+            });
+    }
+
     const authenticate = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userLogged) => {
                 console.log("Usuário autenticado com sucesso: " + JSON.stringify(userLogged))
                 setMensagemErro('');
                 setPaddingSenha(6);
-                props.navigation.navigate("MyDrawer", { emailUsuarioLogado: 'testefirebase@teste.com' });
+
+                updateUserDataRedux();
+
+                props.navigation.navigate("MyDrawer");
             })
             .catch((error) => {
                 console.log("Falha ao autenticar o usuário: " + JSON.stringify(error))
@@ -45,29 +82,6 @@ const Inicial = (props) => {
                     setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>Erro.</Text>);
                 }
             })
-    }
-
-    const entrar = () => {
-        for (const key in contas) {
-            if (key === email) {
-                const emailUsuario = contas[key].email;
-                const passwordUsuario = contas[key].password;
-                if (emailUsuario === email && passwordUsuario === password) {
-                    setMensagemErro('');
-                    setPaddingSenha(6);
-                    props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuario });
-                    return;
-                }
-                else {
-                    setPaddingSenha(24);
-                    setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>E-mail e/ou senha inválidos.</Text>);
-                    return;
-                }
-            }
-        }
-        setPaddingSenha(24);
-        setMensagemErro(<Text style={Inicial_sty.login.messageErrorView.textMessageError}>E-mail não cadastrado.</Text>);
-        return;
     }
 
     return (

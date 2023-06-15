@@ -63,12 +63,12 @@ const NovaConta = (props) => {
 
                     const dbCollection = collection(db, "users");
                     const user = {
-                        nomeCompleto: nome,
-                        sexo: sexo,
-                        dataNascimento: placeholderDateText,
+                        fullName: nome,
+                        gender: sexo,
+                        birthDate: placeholderDateText,
                         email: email,
                         password: password,
-                        vacinas: {},
+                        vaccines: {},
                     };
                     return addDoc(dbCollection, user);
                 })

@@ -9,7 +9,7 @@ const MinhasVacinas = (props) => {
     const [myComponents, setMyComponents] = useState([]);
     const [searchText, setSearchText] = useState('');
 
-    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    const userLoggedId = useSelector(state => state.ids.userLoggedId)
 
     const novaVacina = () => {
         props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });

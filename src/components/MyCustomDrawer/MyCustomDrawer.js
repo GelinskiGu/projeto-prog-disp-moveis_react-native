@@ -1,10 +1,14 @@
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { useSelector } from 'react-redux';
 
 import { MyCustomDrawer_sty } from './MyCustomDrawer_sty';
 
 
 const MyCustomDrawer = (props) => {
+
+    const userLoggedId = useSelector(state => state.ids.userLoggedId)
+
     return (
         <DrawerContentScrollView style={MyCustomDrawer_sty.container}>
             <View style={MyCustomDrawer_sty.container.containerFlex}>
