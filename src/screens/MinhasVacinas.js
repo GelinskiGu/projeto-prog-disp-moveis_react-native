@@ -4,12 +4,18 @@ import { useState, useEffect } from 'react';
 import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MyStyles/MinhasVacinas_sty";
 import contas from "../data/Contas";
+import { useSelector } from "react-redux";
 
 const MinhasVacinas = (props) => {
     const [myComponents, setMyComponents] = useState([]);
     const [searchText, setSearchText] = useState('');
 
-    const userLoggedId = useSelector(state => state.ids.userLoggedId)
+    const userId = useSelector((state) => state.userData.userLoggedId);
+    const name = useSelector((state) => state.userData.name);
+    const birthDate = useSelector((state) => state.userData.birthDate);
+    const gender = useSelector((state) => state.userData.gender);
+
+    console.log("Dados: " + userId + name + birthDate + gender);
 
     const novaVacina = () => {
         props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });
@@ -18,7 +24,7 @@ const MinhasVacinas = (props) => {
     const filteredList = myComponents.filter((item) =>
         item.nomeVacina.toLowerCase().includes(searchText.toLowerCase())
     );
-
+    /*
     useEffect(() => {
         const components = [];
         let id = 1;
@@ -57,6 +63,7 @@ const MinhasVacinas = (props) => {
             setMyComponents(components);
         }
     }, []);
+    */
 
     return (
         <View style={MinhasVacinas_sty.container.containerKeyboard}>

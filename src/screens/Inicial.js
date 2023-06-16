@@ -7,6 +7,7 @@ import { auth } from "../firebase/config";
 import { useDispatch } from 'react-redux'
 import { reducerSetUserData } from "../../redux/userDataSlice";
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from "../firebase/config";
 
 import LinearGradient from 'react-native-linear-gradient';
 
