@@ -40,7 +40,6 @@ const NovaConta = (props) => {
                 sexo: sexo,
                 dataNascimento: placeholderDateText,
                 email: email,
-                vacinas: {},
             };
             contas[email] = pessoa;
             props.navigation.pop();
@@ -67,13 +66,8 @@ const NovaConta = (props) => {
                         gender: sexo,
                         birthDate: placeholderDateText,
                         email: email,
-                        vaccines: {},
                     };
                     return addDoc(dbCollection, user);
-                })
-                .then((refDoc) => {
-                    const vaccineCollection = collection(db, "users", refDoc.id, "vaccines");
-                    return addDoc(vaccineCollection, {});
                 })
                 .then(() => {
                     console.log("Usuário inserido com sucesso!");

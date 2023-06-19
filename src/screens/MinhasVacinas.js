@@ -6,11 +6,13 @@ import { MinhasVacinas_sty } from "../components/MyStyles/MinhasVacinas_sty";
 import contas from "../data/Contas";
 import { useSelector } from "react-redux";
 
+import { db } from '../firebase/config'
+import { collection, query, getDocs, onSnapshot } from 'firebase/firestore';
+
 const MinhasVacinas = (props) => {
-    const [myComponents, setMyComponents] = useState([]);
+    const [vaccinesList, setVaccinesList] = useState([])
     const [searchText, setSearchText] = useState('');
 
-    // useSelector((state) => state.login.email)
 
     const userId = useSelector((state) => state.user.userLoggedId);
     const name = useSelector((state) => state.user.name);
@@ -20,52 +22,39 @@ const MinhasVacinas = (props) => {
     console.log("Dados: " + userId + name + birthDate + gender);
 
     const novaVacina = () => {
-        props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });
+        props.navigation.navigate("NovaVacina");
     }
 
-    const filteredList = myComponents.filter((item) =>
-        item.nomeVacina.toLowerCase().includes(searchText.toLowerCase())
-    );
     /*
-    useEffect(() => {
-        const components = [];
-        let id = 1;
-        if (contas[emailUsuarioLogado]) {
-            for (const vacina in contas[emailUsuarioLogado].vacinas) {
-                const objVacina = contas[emailUsuarioLogado].vacinas[vacina];
-                const nomeVacinaObj = objVacina.nome;
-                const dataObj = objVacina.dataVacinacao;
-                const doseObj = objVacina.dose;
-                let dataDoseObj;
-                if (objVacina.proxVacinacao)
-                    dataDoseObj = "Próxima dose em: " + objVacina.proxVacinacao;
-                else
-                    dataDoseObj = "Não há próxima dose";
-
-                const component = {
-                    id: id,
-                    nomeVacina: nomeVacinaObj,
-                    dose: doseObj,
-                    data: dataObj,
-                    dataDose: dataDoseObj,
-                    onPress: () => {
-                        props.navigation.navigate("EditarVacina", {
-                            emailUsuarioLogado: emailUsuarioLogado,
-                            data: dataObj,
-                            nome: nomeVacinaObj,
-                            dose: doseObj,
-                            proxVacinacao: objVacina.proxVacinacao,
-                        });
-                    }
-                }
-                components.push(component);
-                id++;
-            }
-
-            setMyComponents(components);
-        }
-    }, []);
+    const filteredList = vaccinesList.filter((item) =>
+        item.nome.toLowerCase().includes(searchText.toLowerCase())
+    );
     */
+    useEffect(() => {
+        const vaccinesCollectionRef = collection(db, "users", userId, "vaccines");
+
+        const q = query(vaccinesCollectionRef)
+
+
+        onSnapshot(q, (querySnapshot) => {
+            const vaccines = [];
+
+            querySnapshot.forEach((doc) => {
+                vaccines.push({
+                    id: doc.id,
+                    dataVacinacao: doc.data().dataVacinacao,
+                    dose: doc.data().dose,
+                    nome: doc.data().nome,
+                    proxVacinacao: doc.data().proxVacinacao,
+                });
+            })
+
+            setVaccinesList(vaccines);
+        })
+
+        console.log(`Vacinas: ${JSON.stringify(vaccinesList)}`);
+
+    }, []);
 
     return (
         <View style={MinhasVacinas_sty.container.containerKeyboard}>
@@ -79,8 +68,19 @@ const MinhasVacinas = (props) => {
                             onChangeText={(text) => setSearchText(text)}></TextInput>
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
-                        <FlatList data={filteredList}
-                            renderItem={MyVaccines}
+                        <FlatList
+                            extraData={vaccinesList}
+                            data={vaccinesList}
+                            renderItem={({ item }) => {
+                                return <MyVaccines
+                                    navigation={props.navigation}
+                                    id={item.id}
+                                    dataVacinacao={item.dataVacinacao}
+                                    dose={item.dose}
+                                    nome={item.nome}
+                                    proxVacinacao={item.proxVacinacao}
+                                />
+                            }}
                             keyExtractor={item => item.id}
                             numColumns={2}
                             scrollEnabled={false} />

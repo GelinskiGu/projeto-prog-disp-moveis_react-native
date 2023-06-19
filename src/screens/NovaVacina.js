@@ -6,9 +6,13 @@ import DatePicker from 'react-native-date-picker'
 
 import { NovaVacina_sty } from "../components/MyStyles/NovaVacina_sty";
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
-import contas from "../data/Contas";
 
+import { useSelector } from "react-redux";
 
+import { db } from "../firebase/config";
+import { addDoc, collection } from "firebase/firestore";
+
+// TODO: Arrumar layout de alguns inputs.
 
 const NovaVacina = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState(new Date());
@@ -22,22 +26,32 @@ const NovaVacina = (props) => {
     const [openDataVacinacao, setOpenDataVacinacao] = useState(false);
     const [openProxVacinacao, setOpenProxVacinacao] = useState(false);
 
-    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    const userId = useSelector((state) => state.user.userLoggedId);
 
     const cadastrar = () => {
         if (dataVacinacao && vacina && dose) {
-            const vacinaCriada = {
+            const newVaccine = {
                 nome: vacina,
                 dataVacinacao: placeholderDateTextDataVacinacao,
                 dose: dose,
                 proxVacinacao: placeholderDateTextProxVacinacao,
             };
-            if (contas[emailUsuarioLogado])
-                contas[emailUsuarioLogado].vacinas[vacina] = vacinaCriada;
+
+            const vaccinesCollectionRef = collection(db, "users", userId, "vaccines");
+
+            addDoc(vaccinesCollectionRef, newVaccine)
+                .then((refDoc) => {
+                    console.log("Vacina adicionada ao usuário com sucesso: " + JSON.stringify(refDoc));
+
+                    props.navigation.navigate("MyDrawer");
+                    props.navigation.pop();
+                    props.navigation.navigate("MyDrawer");
+                })
+                .catch((error) => {
+                    console.log("Erro ao adicionar vacina ao usuário: " + error);
+                })
         }
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
-        props.navigation.pop();
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
+
     }
 
     return (
