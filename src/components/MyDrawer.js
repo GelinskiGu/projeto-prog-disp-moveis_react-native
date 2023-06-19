@@ -3,14 +3,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import MinhasVacinas from "../screens/MinhasVacinas";
 import ProximasVacinas from "../screens/ProximasVacinas";
 import MyCustomDrawer from "./MyCustomDrawer/MyCustomDrawer";
+import { useSelector } from "react-redux";
 
-import contas from "../data/Contas";
 
 const Drawer = createDrawerNavigator()
 
 const MyDrawer = (props) => {
-    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
-    const nome = contas[emailUsuarioLogado].nomeCompleto.split(" ")[0];
+    const nome = useSelector((state) => state.user.name)
 
     return (
         <Drawer.Navigator drawerContent={(props) => <MyCustomDrawer {...props} nome={nome} />} initialRouteName="Tela1" screenOptions={{}}>
@@ -22,7 +21,7 @@ const MyDrawer = (props) => {
                 },
                 headerStyle: { backgroundColor: '#C1E7E3' },
                 headerTitle: 'Minhas Vacinas',
-            }} initialParams={{ emailUsuarioLogado: props.route.params.emailUsuarioLogado }} />
+            }} />
             <Drawer.Screen name="ProximasVacinas" component={ProximasVacinas} options={{
                 headerTitleStyle: {
                     color: '#419ED7',
@@ -31,7 +30,7 @@ const MyDrawer = (props) => {
                 },
                 headerStyle: { backgroundColor: '#C1E7E3' },
                 headerTitle: 'Próximas Vacinas',
-            }} initialParams={{ emailUsuarioLogado: props.route.params.emailUsuarioLogado }} />
+            }} />
         </Drawer.Navigator>
     )
 }

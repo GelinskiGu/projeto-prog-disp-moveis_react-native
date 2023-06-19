@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react';
 import { Inicial_sty } from "../components/MyStyles/Inicial_sty";
 import { KeyboardAvoidingView } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 import { useDispatch } from 'react-redux'
-import { reducerSetUserData } from "../../redux/userDataSlice";
+import { reducerSetUserData } from '../../redux/userDataSlice'
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from "../firebase/config";
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -20,34 +19,33 @@ const Inicial = (props) => {
 
     const dispatch = useDispatch()
 
-    const updateUserDataRedux = () => {
-        const usersCollectionRef = collection(db, 'users');
-        const queryByEmail = query(usersCollectionRef, where('email', '==', email));
-        getDocs(queryByEmail)
-            .then((querySnapshot) => {
-                if (!querySnapshot.empty) {
-                    const userDoc = querySnapshot.docs[0];
-                    const userData = userDoc.data();
+    const updateUserDataRedux = async () => {
+        const usersCollectionRef = collection(db, "users");
+        console.log(usersCollectionRef);
+        const q = query(usersCollectionRef, where("email", "==", email));
 
-                    const userId = userDoc.id;
-                    const name = userData.fullName;
-                    const birthDate = userData.birthDate;
-                    const gender = userData.gender;
+        const doc = await getDocs(q);
+        console.log("Documento: " + JSON.stringify(doc));
+        const userData = doc.docs[0].data();
+        console.log("DATA: " + userData);
 
-                    dispatch(reducerSetUserData({
-                        userLoggedId: userId,
-                        name: name,
-                        email: email,
-                        birthDate: birthDate,
-                        gender: gender,
-                    }))
-                } else {
-                    console.log("Nenhum usuário encontrado com o email fornecido.");
-                }
-            })
-            .catch((error) => {
-                console.log('Erro ao buscar usuário:', error);
-            });
+        const userId = doc.docs[0].id;
+        const name = userData.fullName;
+        const birthDate = userData.birthDate;
+        const gender = userData.gender;
+
+        console.log("NOME:" + name);
+
+        dispatch(reducerSetUserData({
+            userLoggedId: userId,
+            name: name,
+            email: email,
+            birthDate: birthDate,
+            gender: gender
+        }));
+
+        console.log("Atualizado!");
+
     }
 
     const authenticate = () => {
@@ -57,9 +55,12 @@ const Inicial = (props) => {
                 setMensagemErro('');
                 setPaddingSenha(6);
 
-                updateUserDataRedux();
+                updateUserDataRedux().then(() => {
+                    props.navigation.navigate("MyDrawer");
+                }).catch((error) => {
+                    console.log("Erro ao atualizar usuário no Redux: " + JSON.stringify(error));
+                });
 
-                props.navigation.navigate("MyDrawer");
             })
             .catch((error) => {
                 console.log("Falha ao autenticar o usuário: " + JSON.stringify(error))

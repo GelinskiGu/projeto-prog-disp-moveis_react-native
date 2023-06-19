@@ -9,10 +9,10 @@ const initialValues = {
 }
 
 export const userDataSlice = createSlice({
-    name: 'UserData',
+    name: 'userData',
     initialState: initialValues,
     reducers: {
-        reducerSetIds: (state, action) => {
+        reducerSetUserData: (state, action) => {
             state.userLoggedId = action.payload.userLoggedId
             state.name = action.payload.name
             state.email = action.payload.email

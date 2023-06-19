@@ -10,10 +10,12 @@ const MinhasVacinas = (props) => {
     const [myComponents, setMyComponents] = useState([]);
     const [searchText, setSearchText] = useState('');
 
-    const userId = useSelector((state) => state.userData.userLoggedId);
-    const name = useSelector((state) => state.userData.name);
-    const birthDate = useSelector((state) => state.userData.birthDate);
-    const gender = useSelector((state) => state.userData.gender);
+    // useSelector((state) => state.login.email)
+
+    const userId = useSelector((state) => state.user.userLoggedId);
+    const name = useSelector((state) => state.user.name);
+    const birthDate = useSelector((state) => state.user.birthDate);
+    const gender = useSelector((state) => state.user.gender);
 
     console.log("Dados: " + userId + name + birthDate + gender);
 

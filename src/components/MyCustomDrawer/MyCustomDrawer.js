@@ -6,14 +6,13 @@ import { MyCustomDrawer_sty } from './MyCustomDrawer_sty';
 
 
 const MyCustomDrawer = (props) => {
-
-    const userLoggedId = useSelector(state => state.ids.userLoggedId)
+    const name = useSelector((state) => state.user.name).split(" ")[0];
 
     return (
         <DrawerContentScrollView style={MyCustomDrawer_sty.container}>
             <View style={MyCustomDrawer_sty.container.containerFlex}>
                 <View style={MyCustomDrawer_sty.container.container1}>
-                    <Text style={MyCustomDrawer_sty.text}>Olá {props.nome}</Text>
+                    <Text style={MyCustomDrawer_sty.text}>Olá {name}</Text>
                     <View style={MyCustomDrawer_sty.line} />
                 </View>
 
