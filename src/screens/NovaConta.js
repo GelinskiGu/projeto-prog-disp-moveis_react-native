@@ -10,8 +10,6 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 import { NovaConta_sty } from "../components/MyStyles/NovaConta_sty";
-import contas from "../data/Contas";
-
 
 // TODO: Colocar um messageEmail para quando o email já estiver cadastrado
 
@@ -27,24 +25,6 @@ const NovaConta = (props) => {
     const [placeholderDateText, setPlaceholderDateText] = useState('Selecione a data...');
     const [placeholderDateColor, setPlaceholderDateColor] = useState('#8B8B8B');
     const [open, setOpen] = useState(false);
-
-
-    const cadastrarUsuario1 = () => {
-        if (password !== passwordRep) {
-            setMargem(20);
-            setMensagemPassword(<Text style={NovaConta_sty.textWrongFields}>Password não confere!</Text>);
-        }
-        else {
-            const pessoa = {
-                nomeCompleto: nome,
-                sexo: sexo,
-                dataNascimento: placeholderDateText,
-                email: email,
-            };
-            contas[email] = pessoa;
-            props.navigation.pop();
-        }
-    }
 
     const createUser = () => {
         if (password !== passwordRep) {

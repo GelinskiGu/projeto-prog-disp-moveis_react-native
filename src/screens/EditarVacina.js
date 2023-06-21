@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Image, Modal } fro
 import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { TextInputMask } from "react-native-masked-text";
 import DatePicker from 'react-native-date-picker'
 
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
@@ -18,10 +17,7 @@ const EditarVacina = (props) => {
     const [dose, setDose] = useState(useSelector((state) => state.vaccine.dose));
     const [proxVacinacao, setProxVacinacao] = useState(useSelector((state) => state.vaccine.vaccineNextDate));
     const [isVisible, setIsVisible] = useState(false);
-    const [placeholderDateTextDataVacinacao, setPlaceholderDateTextDataVacinacao] = useState('Data da vacina...');
-    const [placeholderDateTextProxVacinacao, setPlaceholderDateTextProxVacinacao] = useState('Próxima vacina...');
     const [placeholderDateColorDataVacinacao, setPlaceholderDateColorDataVacinacao] = useState("#419ED7");
-    const [placeholderDateColorProxVacinacao, setPlaceholderDateColorProxVacinacao] = useState("#419ED7");
     const [openDataVacinacao, setOpenDataVacinacao] = useState(false);
     const [openProxVacinacao, setOpenProxVacinacao] = useState(false);
 
@@ -35,7 +31,6 @@ const EditarVacina = (props) => {
             const [day, month, year] = date.split("/");
             if (day && month && year) {
                 const data = new Date(year, month - 1, day);
-                console.log(JSON.stringify(data));
                 return data;
             }
         }

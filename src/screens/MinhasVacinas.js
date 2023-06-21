@@ -18,8 +18,6 @@ const MinhasVacinas = (props) => {
     const birthDate = useSelector((state) => state.user.birthDate);
     const gender = useSelector((state) => state.user.gender);
 
-    console.log("Dados: " + userId + name + birthDate + gender);
-
     const novaVacina = () => {
         props.navigation.navigate("NovaVacina");
     }
@@ -49,8 +47,6 @@ const MinhasVacinas = (props) => {
 
             setVaccinesList(vaccines);
         })
-
-        console.log(`Vacinas: ${JSON.stringify(vaccinesList)}`);
 
     }, []);
 

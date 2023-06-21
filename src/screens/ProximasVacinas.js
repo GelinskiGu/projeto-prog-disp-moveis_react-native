@@ -5,8 +5,6 @@ import { KeyboardAvoidingView } from 'react-native';
 import { ProximasVacinas_sty } from "../components/MyStyles/ProximasVacinas_sty";
 import MyCard from "../components/MyCard/MyCard";
 
-import contas from "../data/Contas";
-
 import { useSelector } from "react-redux";
 
 import { db } from '../firebase/config'
@@ -14,8 +12,7 @@ import { collection, query, getDocs, onSnapshot, where, Timestamp } from 'fireba
 
 
 const ProximasVacinas = (props) => {
-    const [myComponents, setMyComponents] = useState([]);
-    const [vaccinesList, setVaccinesList] = useState([])
+    const [vaccinesList, setVaccinesList] = useState([]);
 
     const userId = useSelector((state) => state.user.userLoggedId);
 

@@ -21,21 +21,16 @@ const Inicial = (props) => {
 
     const updateUserDataRedux = async () => {
         const usersCollectionRef = collection(db, "users");
-        console.log(usersCollectionRef);
         const q = query(usersCollectionRef, where("email", "==", email));
 
         const doc = await getDocs(q);
-        console.log("Documento: " + JSON.stringify(doc));
         const userData = doc.docs[0].data();
-        console.log("DATA: " + userData);
 
         const userId = doc.docs[0].id;
         const name = userData.fullName;
         const birthDate = userData.birthDate.toDate().toDateString();
         const birthDateFormatted = userData.birthDateFormatted;
         const gender = userData.gender;
-
-        console.log("NOME:" + name);
 
         dispatch(reducerSetUserData({
             userLoggedId: userId,
