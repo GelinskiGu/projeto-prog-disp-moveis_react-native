@@ -6,24 +6,35 @@ import { TextInputMask } from "react-native-masked-text";
 
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
 
-import contas from "../data/Contas";
+import { useSelector } from 'react-redux';
 
+import { db } from '../firebase/config';
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const EditarVacina = (props) => {
-    const [dataVacinacao, setDataVacinacao] = useState(props.route.params?.data);
-    const [vacina, setVacina] = useState(props.route.params?.nome);
-    const [dose, setDose] = useState(props.route.params?.dose);
-    const [proxVacinacao, setProxVacinacao] = useState(props.route.params?.proxVacinacao);
+    const [dataVacinacao, setDataVacinacao] = useState(useSelector((state) => state.vaccine.vaccineDate));
+    const [vacina, setVacina] = useState(useSelector((state) => state.vaccine.name));
+    const [dose, setDose] = useState(useSelector((state) => state.vaccine.dose));
+    const [proxVacinacao, setProxVacinacao] = useState(useSelector((state) => state.vaccine.vaccineNextDate));
     const [isVisible, setIsVisible] = useState(false);
 
-    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    const userId = useSelector((state) => state.user.userLoggedId);
+    const vaccineId = useSelector((state) => state.vaccine.vaccineId);
+
+    const vaccineDocRef = doc(db, "users", userId, "vaccines", vaccineId);
+
 
     const modalYes = () => {
         setIsVisible(false);
-        delete contas[emailUsuarioLogado].vacinas[vacina];
-        props.navigation.pop();
-        props.navigation.pop();
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
+
+        deleteDoc(vaccineDocRef)
+            .then(() => {
+                console.log("Document successfully deleted!");
+                props.navigation.navigate("MyDrawer");
+            })
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+            });
     };
 
     const modalCancel = () => {
@@ -32,18 +43,22 @@ const EditarVacina = (props) => {
 
     const salvarAlteracoes = () => {
         if (dataVacinacao && vacina && dose) {
-            const vacinaAlterada = {
-                nome: vacina,
+            const updatedFields = {
                 dataVacinacao: dataVacinacao,
                 dose: dose,
+                nome: vacina,
                 proxVacinacao: proxVacinacao,
-            };
-            if (contas[emailUsuarioLogado])
-                contas[emailUsuarioLogado].vacinas[vacina] = vacinaAlterada;
+            }
+
+            updateDoc(vaccineDocRef, updatedFields)
+                .then(() => {
+                    console.log("Document successfully updated!");
+                    props.navigation.navigate("MyDrawer");
+                })
+                .catch((error) => {
+                    console.error("Error updating document: ", error);
+                });
         }
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
-        props.navigation.pop();
-        props.navigation.navigate("MyDrawer", { emailUsuarioLogado: emailUsuarioLogado });
     }
 
     return (
