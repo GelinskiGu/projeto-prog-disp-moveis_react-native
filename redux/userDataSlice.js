@@ -16,6 +16,7 @@ export const userDataSlice = createSlice({
             state.userLoggedId = action.payload.userLoggedId
             state.name = action.payload.name
             state.email = action.payload.email
+            state.birthDateFormatted = action.payload.birthDateFormatted
             state.birthDate = action.payload.birthDate
             state.gender = action.payload.gender
         }

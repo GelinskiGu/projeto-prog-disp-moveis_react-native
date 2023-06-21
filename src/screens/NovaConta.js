@@ -64,7 +64,8 @@ const NovaConta = (props) => {
                     const user = {
                         fullName: nome,
                         gender: sexo,
-                        birthDate: placeholderDateText,
+                        birthDateFormatted: placeholderDateText,
+                        birthDate: data,
                         email: email,
                     };
                     return addDoc(dbCollection, user);

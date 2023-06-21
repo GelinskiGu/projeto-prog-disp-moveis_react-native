@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 import MyVaccines from "../components/MyVaccines/MyVaccines";
 import { MinhasVacinas_sty } from "../components/MyStyles/MinhasVacinas_sty";
-import contas from "../data/Contas";
 import { useSelector } from "react-redux";
 
 import { db } from '../firebase/config'
@@ -25,11 +24,10 @@ const MinhasVacinas = (props) => {
         props.navigation.navigate("NovaVacina");
     }
 
-    /*
     const filteredList = vaccinesList.filter((item) =>
         item.nome.toLowerCase().includes(searchText.toLowerCase())
     );
-    */
+
     useEffect(() => {
         const vaccinesCollectionRef = collection(db, "users", userId, "vaccines");
 
@@ -69,8 +67,8 @@ const MinhasVacinas = (props) => {
                     </View>
                     <View style={MinhasVacinas_sty.container.containerMyVaccines}>
                         <FlatList
-                            extraData={vaccinesList}
-                            data={vaccinesList}
+                            extraData={filteredList}
+                            data={filteredList}
                             renderItem={({ item }) => {
                                 return <MyVaccines
                                     navigation={props.navigation}

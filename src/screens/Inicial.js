@@ -31,7 +31,8 @@ const Inicial = (props) => {
 
         const userId = doc.docs[0].id;
         const name = userData.fullName;
-        const birthDate = userData.birthDate;
+        const birthDate = userData.birthDate.toDate().toDateString();
+        const birthDateFormatted = userData.birthDateFormatted;
         const gender = userData.gender;
 
         console.log("NOME:" + name);
@@ -41,6 +42,7 @@ const Inicial = (props) => {
             name: name,
             email: email,
             birthDate: birthDate,
+            birthDateFormatted: birthDateFormatted,
             gender: gender
         }));
 

@@ -16,9 +16,13 @@ import { addDoc, collection } from "firebase/firestore";
 
 const NovaVacina = (props) => {
     const [dataVacinacao, setDataVacinacao] = useState(new Date());
+    const [vaccineDateUpdated, setVaccineDateUpdated] = useState("");
+    const [vaccineDateUpdatedFormatted, setVaccineDateUpdatedFormatted] = useState("");
     const [vacina, setVacina] = useState('');
     const [dose, setDose] = useState('');
     const [proxVacinacao, setProxVacinacao] = useState(new Date());
+    const [nextVaccinationUpdated, setNextVaccinationUpdated] = useState("");
+    const [nextVaccinationUpdatedFormatted, setNextVaccinationUpdatedFormatted] = useState("");
     const [placeholderDateTextDataVacinacao, setPlaceholderDateTextDataVacinacao] = useState('Data da vacina...');
     const [placeholderDateTextProxVacinacao, setPlaceholderDateTextProxVacinacao] = useState('Próxima vacina...');
     const [placeholderDateColorDataVacinacao, setPlaceholderDateColorDataVacinacao] = useState('#8B8B8B');
@@ -32,9 +36,11 @@ const NovaVacina = (props) => {
         if (dataVacinacao && vacina && dose) {
             const newVaccine = {
                 nome: vacina,
-                dataVacinacao: placeholderDateTextDataVacinacao,
+                dataVacinacao: vaccineDateUpdatedFormatted,
+                dataVacinacaoTimestamp: vaccineDateUpdated,
                 dose: dose,
-                proxVacinacao: placeholderDateTextProxVacinacao,
+                proxVacinacao: nextVaccinationUpdatedFormatted,
+                proxVacinacaoTimestamp: nextVaccinationUpdated
             };
 
             const vaccinesCollectionRef = collection(db, "users", userId, "vaccines");
@@ -163,6 +169,8 @@ const NovaVacina = (props) => {
                         setOpenDataVacinacao(false)
                         setPlaceholderDateTextDataVacinacao(`${formattedDay}/${formattedMonth}/${year}`)
                         setPlaceholderDateColorDataVacinacao("#419ED7")
+                        setVaccineDateUpdated(data)
+                        setVaccineDateUpdatedFormatted(`${formattedDay}/${formattedMonth}/${year}`)
                         setDataVacinacao(data)
                     }}
                     onCancel={() => {
@@ -190,6 +198,8 @@ const NovaVacina = (props) => {
                         setOpenProxVacinacao(false)
                         setPlaceholderDateTextProxVacinacao(`${formattedDay}/${formattedMonth}/${year}`)
                         setPlaceholderDateColorProxVacinacao("#419ED7")
+                        setNextVaccinationUpdated(data)
+                        setNextVaccinationUpdatedFormatted(`${formattedDay}/${formattedMonth}/${year}`)
                         setDataVacinacao(data)
                     }}
                     onCancel={() => {
