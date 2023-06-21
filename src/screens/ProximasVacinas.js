@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import { useState, useEffect } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -7,48 +7,46 @@ import MyCard from "../components/MyCard/MyCard";
 
 import contas from "../data/Contas";
 
+import { useSelector } from "react-redux";
+
+import { db } from '../firebase/config'
+import { collection, query, getDocs, onSnapshot, where, Timestamp } from 'firebase/firestore';
 
 
 const ProximasVacinas = (props) => {
     const [myComponents, setMyComponents] = useState([]);
+    const [vaccinesList, setVaccinesList] = useState([])
 
-    const emailUsuarioLogado = props.route.params?.emailUsuarioLogado;
+    const userId = useSelector((state) => state.user.userLoggedId);
 
     const novaVacina = () => {
-        props.navigation.navigate("NovaVacina", { emailUsuarioLogado: emailUsuarioLogado });
+        props.navigation.navigate("NovaVacina");
     }
 
     useEffect(() => {
-        const components = [];
-        let id = 0;
-        if (contas[emailUsuarioLogado]) {
-            for (const vacina in contas[emailUsuarioLogado].vacinas) {
-                const objVacina = contas[emailUsuarioLogado].vacinas[vacina];
-                if (objVacina.proxVacinacao) {
-                    const nomeVacinaObj = objVacina.nome;
-                    const dataDoseObj = objVacina.proxVacinacao;
-                    const dataObj = objVacina.dataVacinacao;
-                    const doseObj = objVacina.dose;
-                    const component = <MyCard
-                        key={id}
-                        nomeVacina={nomeVacinaObj}
-                        data={dataDoseObj}
-                        onPress={() => {
-                            props.navigation.navigate("EditarVacina", {
-                                emailUsuarioLogado: emailUsuarioLogado,
-                                data: dataObj,
-                                nome: nomeVacinaObj,
-                                dose: doseObj,
-                                proxVacinacao: objVacina.proxVacinacao,
-                            });
-                        }}
-                    />;
-                    components.push(component);
-                    id++;
-                }
-            }
-            setMyComponents(components);
-        }
+        const currentDate = Timestamp.now();
+
+        const vaccinesCollectionRef = collection(db, "users", userId, "vaccines");
+
+        const q = query(vaccinesCollectionRef, where("proxVacinacaoTimestamp", ">=", currentDate))
+
+        onSnapshot(q, (querySnapshot) => {
+            const vaccines = [];
+
+            querySnapshot.forEach((doc) => {
+                vaccines.push({
+                    id: doc.id,
+                    dataVacinacao: doc.data().dataVacinacao,
+                    dose: doc.data().dose,
+                    nome: doc.data().nome,
+                    proxVacinacao: doc.data().proxVacinacao,
+                });
+            })
+
+            setVaccinesList(vaccines);
+        })
+
+
     }, []);
 
 
@@ -56,7 +54,15 @@ const ProximasVacinas = (props) => {
         <KeyboardAvoidingView style={ProximasVacinas_sty.container.containerKeyboard}>
             <ScrollView>
                 <View style={ProximasVacinas_sty.container.containerView}>
-                    {myComponents}
+                    {vaccinesList.map((vaccine) => (
+                        <MyCard
+                            id={vaccine.id}
+                            nomeVacina={vaccine.nome}
+                            vaccineDate={vaccine.dataVacinacao}
+                            data={vaccine.proxVacinacao}
+                            dose={vaccine.dose}
+                            navigation={props.navigation}
+                        />))}
                 </View>
             </ScrollView>
 
