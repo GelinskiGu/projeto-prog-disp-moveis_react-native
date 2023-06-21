@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { TextInputMask } from "react-native-masked-text";
+import DatePicker from 'react-native-date-picker'
 
 import { EditarVacina_sty } from "../components/MyStyles/EditarVacina_sty";
 
@@ -17,12 +18,35 @@ const EditarVacina = (props) => {
     const [dose, setDose] = useState(useSelector((state) => state.vaccine.dose));
     const [proxVacinacao, setProxVacinacao] = useState(useSelector((state) => state.vaccine.vaccineNextDate));
     const [isVisible, setIsVisible] = useState(false);
+    const [placeholderDateTextDataVacinacao, setPlaceholderDateTextDataVacinacao] = useState('Data da vacina...');
+    const [placeholderDateTextProxVacinacao, setPlaceholderDateTextProxVacinacao] = useState('Próxima vacina...');
+    const [placeholderDateColorDataVacinacao, setPlaceholderDateColorDataVacinacao] = useState("#419ED7");
+    const [placeholderDateColorProxVacinacao, setPlaceholderDateColorProxVacinacao] = useState("#419ED7");
+    const [openDataVacinacao, setOpenDataVacinacao] = useState(false);
+    const [openProxVacinacao, setOpenProxVacinacao] = useState(false);
 
     const userId = useSelector((state) => state.user.userLoggedId);
     const vaccineId = useSelector((state) => state.vaccine.vaccineId);
 
     const vaccineDocRef = doc(db, "users", userId, "vaccines", vaccineId);
 
+    const formatDate = (date) => {
+        if (typeof date === 'string') {
+            const [day, month, year] = date.split("/");
+            if (day && month && year) {
+                const data = new Date(year, month - 1, day);
+                console.log(JSON.stringify(data));
+                return data;
+            }
+        }
+        return new Date();
+
+    }
+
+    const [vaccineDateUpdated, setVaccineDateUpdated] = useState(formatDate(dataVacinacao));
+    const [vaccineDateUpdatedFormatted, setVaccineDateUpdatedFormatted] = useState(dataVacinacao);
+    const [nextVaccinationUpdated, setNextVaccinationUpdated] = useState(formatDate(proxVacinacao));
+    const [nextVaccinationUpdatedFormatted, setNextVaccinationUpdatedFormatted] = useState(proxVacinacao);
 
     const modalYes = () => {
         setIsVisible(false);
@@ -44,10 +68,12 @@ const EditarVacina = (props) => {
     const salvarAlteracoes = () => {
         if (dataVacinacao && vacina && dose) {
             const updatedFields = {
-                dataVacinacao: dataVacinacao,
+                dataVacinacao: vaccineDateUpdatedFormatted,
+                dataVacinacaoTimestamp: vaccineDateUpdated,
                 dose: dose,
                 nome: vacina,
-                proxVacinacao: proxVacinacao,
+                proxVacinacao: nextVaccinationUpdatedFormatted,
+                proxVacinacaoTimestamp: nextVaccinationUpdated,
             }
 
             updateDoc(vaccineDocRef, updatedFields)
@@ -91,12 +117,14 @@ const EditarVacina = (props) => {
                     <View style={EditarVacina_sty.containerInputs}>
                         <Text style={EditarVacina_sty.text}>Data de vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInputMask
-                                type={'datetime'}
-                                options={{
-                                    format: 'DD/MM/YYYY'
-                                }} label={'DataVacinacao'} style={EditarVacina_sty.inputs} value={dataVacinacao} onChangeText={setDataVacinacao}></TextInputMask>
-                            <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
+                            <TouchableOpacity
+                                onPress={() => setOpenDataVacinacao(true)}
+                                style={EditarVacina_sty.inputs}
+                            ><Text style={[EditarVacina_sty.placeholderText, { color: placeholderDateColorDataVacinacao }]}>{dataVacinacao}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => setOpenDataVacinacao(true)}>
+                                <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.image} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={EditarVacina_sty.containerInputs}>
@@ -153,15 +181,17 @@ const EditarVacina = (props) => {
                             <Image source={require('../../assets/images/image-comprovante.png')} style={EditarVacina_sty.proofVaccineImage}></Image>
                         </View>
                     </View>
-                    <View style={[EditarVacina_sty.containerInputs, { marginRight: 5 }]}>
+                    <View style={EditarVacina_sty.containerInputs}>
                         <Text style={EditarVacina_sty.text}>Próxima vacinação</Text>
                         <View style={EditarVacina_sty.containerDate}>
-                            <TextInputMask
-                                type={'datetime'}
-                                options={{
-                                    format: 'DD/MM/YYYY'
-                                }} label={'ProximaVacinacao'} style={EditarVacina_sty.inputs} value={proxVacinacao} onChangeText={setProxVacinacao}></TextInputMask>
-                            <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.dateIcon} />
+                            <TouchableOpacity
+                                onPress={() => setOpenProxVacinacao(true)}
+                                style={EditarVacina_sty.inputs}
+                            ><Text style={[EditarVacina_sty.placeholderText, { color: placeholderDateColorDataVacinacao }]}>{proxVacinacao}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => setProxVacinacao(true)}>
+                                <Image source={require('../../assets/images/icon.png')} style={EditarVacina_sty.image} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={EditarVacina_sty.containerButtons}>
@@ -178,6 +208,60 @@ const EditarVacina = (props) => {
                     </View>
 
                 </View>
+
+                <DatePicker
+                    modal
+                    open={openDataVacinacao}
+                    date={formatDate(dataVacinacao)}
+                    androidVariant="nativeAndroid"
+                    mode="date"
+                    locale="pt-BR"
+                    title="Selecione uma data"
+                    cancelText="Cancelar"
+                    confirmText="Confirmar"
+                    onConfirm={(data) => {
+                        const day = data.getDate();
+                        const month = data.getMonth() + 1;
+                        const year = data.getFullYear();
+
+                        const formattedDay = day < 10 ? `0${day}` : day;
+                        const formattedMonth = month < 10 ? `0${month}` : month;
+                        setOpenDataVacinacao(false)
+                        setVaccineDateUpdated(data)
+                        setVaccineDateUpdatedFormatted(`${formattedDay}/${formattedMonth}/${year}`)
+                        setDataVacinacao(`${formattedDay}/${formattedMonth}/${year}`)
+                    }}
+                    onCancel={() => {
+                        setOpenDataVacinacao(false)
+                    }}
+                />
+
+                <DatePicker
+                    modal
+                    open={openProxVacinacao}
+                    date={formatDate(proxVacinacao)}
+                    androidVariant="nativeAndroid"
+                    mode="date"
+                    locale="pt-BR"
+                    title="Selecione uma data"
+                    cancelText="Cancelar"
+                    confirmText="Confirmar"
+                    onConfirm={(data) => {
+                        const day = data.getDate();
+                        const month = data.getMonth() + 1;
+                        const year = data.getFullYear();
+
+                        const formattedDay = day < 10 ? `0${day}` : day;
+                        const formattedMonth = month < 10 ? `0${month}` : month;
+                        setOpenProxVacinacao(false)
+                        setNextVaccinationUpdated(data)
+                        setNextVaccinationUpdatedFormatted(`${formattedDay}/${formattedMonth}/${year}`)
+                        setProxVacinacao(`${formattedDay}/${formattedMonth}/${year}`)
+                    }}
+                    onCancel={() => {
+                        setOpenProxVacinacao(false)
+                    }}
+                />
             </ScrollView>
         </KeyboardAvoidingView >
     )

@@ -33,7 +33,7 @@ const MyVaccines = (props) => {
             <Text style={MyVaccines_sty.text.textDate}>{vaccineDate}</Text>
             <Image source={require('../../../assets/images/image-comprovante.png')} style={MyVaccines_sty.image} />
             <Text style={MyVaccines_sty.text.textDoseDate}>
-                {nextVaccineDate !== "" ? `Próxima dose em: ${nextVaccineDate}` : "Não há próxima dose."}
+                {nextVaccineDate !== "" ? `Próxima dose em: ${nextVaccineDate}` : "Não há próxima dose"}
             </Text>
         </TouchableOpacity>
     )
