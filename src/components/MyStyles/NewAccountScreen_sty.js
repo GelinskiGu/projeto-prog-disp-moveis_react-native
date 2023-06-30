@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const NovaConta_sty = StyleSheet.create({
+const NewAccountScreen_sty = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -129,4 +129,4 @@ const NovaConta_sty = StyleSheet.create({
     },
 })
 
-export { NovaConta_sty } 
+export { NewAccountScreen_sty } 

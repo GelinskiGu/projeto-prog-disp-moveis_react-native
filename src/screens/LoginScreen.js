@@ -140,7 +140,7 @@ const LoginScreen = (props) => {
                                 <TouchableOpacity style={LoginScreen_sty.buttons_container.buttons1} onPress={authenticate}>
                                     <Text style={LoginScreen_sty.buttons_container.textButton1}>Entrar</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={LoginScreen_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NovaConta") }}>
+                                <TouchableOpacity style={LoginScreen_sty.buttons_container.buttons2} onPress={() => { props.navigation.navigate("NewAccountScreen") }}>
                                     <Text style={LoginScreen_sty.buttons_container.textButton1}>Criar minha conta</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={LoginScreen_sty.buttons_container.buttons3} onPress={() => props.navigation.navigate("RecuperarSenha")}>

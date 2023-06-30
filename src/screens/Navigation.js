@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "../../redux/store"
 
 import LoginScreen from "./LoginScreen";
-import NovaConta from "./NovaConta";
+import NewAccountScreen from "./NewAccountScreen";
 import NovaVacina from "./NovaVacina";
 import EditarVacina from "./EditarVacina";
 import ProximasVacinas from "./ProximasVacinas";
@@ -24,7 +24,7 @@ const Navigation = () => {
                 <Stack.Navigator initialRouteName="LoginScreen">
                     <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false }} />
-                    <Stack.Screen name="NovaConta" component={NovaConta} options={{
+                    <Stack.Screen name="NewAccountScreen" component={NewAccountScreen} options={{
                         headerTitleStyle: {
                             color: '#419ED7',
                             fontFamily: 'AveriaLibre-Regular',
