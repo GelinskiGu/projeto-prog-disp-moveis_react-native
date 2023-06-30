@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const MinhasVacinas_sty = StyleSheet.create({
+const MyVaccinesScreen_sty = StyleSheet.create({
     container: {
         containerView: {
             flex: 2,
@@ -84,4 +84,4 @@ const MinhasVacinas_sty = StyleSheet.create({
     },
 })
 
-export { MinhasVacinas_sty } 
+export { MyVaccinesScreen_sty } 

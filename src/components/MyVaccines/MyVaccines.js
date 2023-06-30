@@ -7,11 +7,14 @@ import { reducerSetVaccineData } from "../../../redux/vaccineDataSlice";
 
 const MyVaccines = (props) => {
 
-    const vaccineId = props.id;
-    const name = props.nome;
+    const vaccineId = props.vaccineId;
+    const name = props.name;
+    const vaccineDate = props.vaccineDate;
+    const nextVaccineDate = props.nextVaccineDate;
     const dose = props.dose;
-    const vaccineDate = props.dataVacinacao;
-    const nextVaccineDate = props.proxVacinacao;
+
+    console.log(`Dados: ${vaccineId}, ${name}, ${vaccineDate}, ${nextVaccineDate}, ${dose}`);
+
 
     const dispatch = useDispatch()
 

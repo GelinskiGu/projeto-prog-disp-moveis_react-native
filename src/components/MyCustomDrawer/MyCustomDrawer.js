@@ -17,7 +17,7 @@ const MyCustomDrawer = (props) => {
                 </View>
 
                 <View style={MyCustomDrawer_sty.container.container2}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate("MinhasVacinas")} style={MyCustomDrawer_sty.container.container2.containerRow}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate("MyVaccinesScreen")} style={MyCustomDrawer_sty.container.container2.containerRow}>
                         <Image source={require('../../../assets/images/icon-vaccine.png')} style={MyCustomDrawer_sty.images.image1} />
                         <Text style={MyCustomDrawer_sty.text}>Minhas Vacinas</Text>
                     </TouchableOpacity>

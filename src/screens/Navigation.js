@@ -5,12 +5,12 @@ import { Image } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store"
 
-import Inicial from "./Inicial";
+import LoginScreen from "./LoginScreen";
 import NovaConta from "./NovaConta";
 import NovaVacina from "./NovaVacina";
 import EditarVacina from "./EditarVacina";
 import ProximasVacinas from "./ProximasVacinas";
-import MinhasVacinas from "./MinhasVacinas";
+import MyVaccinesScreen from "./MyVaccinesScreen";
 import MyDrawer from "../components/MyDrawer";
 import RecuperarSenha from "./RecuperarSenha";
 
@@ -21,8 +21,8 @@ const Navigation = () => {
     return (
         <Provider store={store}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Inicial">
-                    <Stack.Screen name="Inicial" component={Inicial} options={{ headerShown: false }} />
+                <Stack.Navigator initialRouteName="LoginScreen">
+                    <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false }} />
                     <Stack.Screen name="NovaConta" component={NovaConta} options={{
                         headerTitleStyle: {
@@ -60,7 +60,7 @@ const Navigation = () => {
                         headerStyle: { backgroundColor: '#C1E7E3' },
                         headerTitle: 'Próximas Vacinas',
                     }} />
-                    <Stack.Screen name="MinhasVacinas" component={MinhasVacinas} options={{
+                    <Stack.Screen name="MyVaccinesScreen" component={MyVaccinesScreen} options={{
                         headerTitleStyle: {
                             color: '#419ED7',
                             fontFamily: 'AveriaLibre-Regular',

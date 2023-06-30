@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const Inicial_sty = StyleSheet.create({
+const LoginScreen_sty = StyleSheet.create({
     container: {
         paddingTop: 70,
         flex: 1,
@@ -166,4 +166,4 @@ const Inicial_sty = StyleSheet.create({
 
 })
 
-export { Inicial_sty } 
+export { LoginScreen_sty } 
